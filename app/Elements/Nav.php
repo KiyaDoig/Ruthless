@@ -4,7 +4,7 @@
         <a class="nav-link active" href="../main-page/Home.php">Main Page</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../add-property/AddProperty.php">Add Properties</a>
+        <a class="nav-link" href="../add-property/AddProperty.php">Add Property</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../browse-manage-properties/BrowseManageProperty.php">Browse/Manage Properties</a>
