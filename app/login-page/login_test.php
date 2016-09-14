@@ -12,7 +12,7 @@ define("MONASH_FILTER","o=Monash University, c=au");
 if(empty($_POST["uname"]))
 {
 ?>
-<form method="post" action="example0205.php">
+<form method="post" action="login_test.php">
     <center>Please log in using your Authcate Details
     </center><p />
     <table border="0" align="center" cellspacing="5">
