@@ -1,2 +1,3 @@
-# Ruthless
-Ruthless Real Estate Web Management Interface
+# Ruthless Real Estate
+
+Web management interface for Ruthless Real Estate staff.

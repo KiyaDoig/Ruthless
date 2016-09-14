@@ -95,3 +95,16 @@ body {
     width:75%;
     left:inherit;
 }
+
+/* Browse/manage properties page */
+.content {
+    padding-left: 30px;
+}
+
+.property-row.active {
+    background-color: rgba(0,0,0,.075);
+}
+
+#hidden {
+    display: none;
+}
