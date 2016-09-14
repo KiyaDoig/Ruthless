@@ -17,7 +17,7 @@
 </head>
 
 <?php
-include('../connection.php');
+include('../Config/Connection.php');
 $conn = oci_connect($UName,$PWord,$DB);
 $query="SELECT * FROM PROPERTY_TYPE";
 $stmt = oci_parse($conn, $query);

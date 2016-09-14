@@ -54,13 +54,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PropertyTypes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PropertyTypes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding>
-                <marker date="1473826695026" expanded="true" signature="728:755" ph="SELECT * FRO... PROPERTY_TYPE" />
+                <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
               </folding>
             </state>
           </provider>
@@ -109,21 +109,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BrowseManageProperty.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-357">
+              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+              <folding>
+                <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Connection.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Config/Connection.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageClients.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/manage-clients/ManageClients.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -437,12 +439,20 @@
       <updated>1473224076367</updated>
       <workItem from="1473224077921" duration="3006000" />
       <workItem from="1473816220861" duration="443000" />
-      <workItem from="1473826616398" duration="78000" />
+      <workItem from="1473826616398" duration="469000" />
     </task>
+    <task id="LOCAL-00001" summary="Property Type">
+      <created>1473826718244</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1473826718244</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3527000" />
+    <option name="totallyTimeSpent" value="3918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -479,6 +489,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Property Type" />
+    <option name="LAST_COMMIT_MESSAGE" value="Property Type" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -513,7 +527,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1473826695026" expanded="true" signature="728:755" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
           </folding>
         </state>
       </provider>
@@ -557,7 +571,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
+          <folding>
+            <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,7 +619,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1473826695026" expanded="true" signature="728:755" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
           </folding>
         </state>
       </provider>
@@ -628,7 +644,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
+          <folding>
+            <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -651,6 +669,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -664,14 +683,6 @@
     <entry file="file://$PROJECT_DIR$/app/Images/ic_account_circle_white_48dp_1x.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/manage-clients/ManageClients.php">
@@ -752,10 +763,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
           <folding>
-            <marker date="1473826695026" expanded="true" signature="728:755" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding>
+            <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
           </folding>
         </state>
       </provider>
