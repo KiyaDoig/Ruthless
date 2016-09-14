@@ -15,6 +15,15 @@
 
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
+
+<?php
+include('../connection.php');
+$conn = oci_connect($UName,$PWord,$DB);
+$query="SELECT * FROM PROPERTY_TYPE";
+$stmt = oci_parse($conn, $query);
+oci_execute($stmt);
+?>
+
 <body>
 <div class="row" id="main-header">
     <?php include '../Elements/MainHeader.php' ?>
@@ -29,6 +38,30 @@
             <div class="col-md-12">
                 <!-- write content here -->
                 <h1>Property Types</h1>
+
+                <table border="1" align="center">
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                    </tr>
+                    <?php
+                    while (oci_fetch($stmt))
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo oci_result($stmt, 1); ?></td>
+                            <td><?php echo oci_result($stmt, 2); ?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </table>
+
+                <?php
+                oci_free_statement($stmt);
+                oci_close($conn);
+                ?>
+
             </div>
         </div>
 
