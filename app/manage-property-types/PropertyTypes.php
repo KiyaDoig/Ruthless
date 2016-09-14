@@ -41,8 +41,8 @@ oci_execute($stmt);
 
                 <table border="1" align="center">
                     <tr>
-                        <th>Customer ID</th>
-                        <th>Customer Name</th>
+                        <th>Type ID</th>
+                        <th>Type Name</th>
                     </tr>
                     <?php
                     while (oci_fetch($stmt))
