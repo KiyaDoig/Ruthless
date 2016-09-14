@@ -107,9 +107,15 @@ define("MONASH_FILTER","o=Monash University, c=au");
                                     {
                                         //This is where the error message should sit
                                         echo "Invalid User";
+                                        ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                            </div>
+                                        <?php
                                     }
                                 }
                                 ?>
+
                             </form>
                         </div>
                     </div>
