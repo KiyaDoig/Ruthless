@@ -35,7 +35,86 @@ define("MONASH_FILTER","o=Monash University, c=au");
             <!-- Main contents will goes here -->
             <div class="col-md-12">
                 <!-- write content here -->
-                <h1>Main Page</h1>
+                <h1>Login Page</h1>
+
+                <?php
+                if(empty($_POST["uname"]))
+                {
+                ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" Action="">
+                                <center>Please log in using your Authcate Details
+                                </center>
+                                <div class="form-group row">
+                                    <label for="uname" class="col-xs-2 col-form-label">Username</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="text" value="" id="uname" name="uname">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="pword" class="col-xs-2 col-form-label">Password</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="password" value="" id="pword" name="pword">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Log in</button>
+
+                                <?php
+                                }
+                                else
+                                {
+                                    $LDAPconn=@ldap_connect(MONASH_DIR);
+                                    if($LDAPconn)
+                                    {
+                                        $LDAPsearch=@ldap_search($LDAPconn,MONASH_FILTER,
+                                            "uid=".$_POST["uname"]);
+                                        if($LDAPsearch)
+                                        {
+                                            $LDAPinfo =
+                                                @ldap_first_entry($LDAPconn,$LDAPsearch);
+                                            if($LDAPinfo)
+                                            {
+                                                $LDAPresult=
+                                                    @ldap_bind($LDAPconn,
+                                                        ldap_get_dn($LDAPconn, $LDAPinfo),
+                                                        $_POST["pword"]);
+                                            }
+                                            else
+                                            {
+                                                $LDAPresult=0;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            $LDAPresult=0;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        $LDAPresult=0;
+                                    }
+                                    if($LDAPresult)
+                                    {
+                                        //This is where the action can become true
+                                        echo "Valid User";
+                                        header("Location: http://triton.infotech.monash.edu.au/FIT2076/25946498/Ruthless/app/main-page/Home.php");
+                                    }
+                                    else
+                                    {
+                                        //This is where the error message should sit
+                                        echo "Invalid User";
+                                    }
+                                }
+                                ?>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -45,73 +124,7 @@ define("MONASH_FILTER","o=Monash University, c=au");
         </div>
     </div>
 
-    <?php
-    if(empty($_POST["uname"]))
-    {
-    ?>
-    <form method="post" action="Login.php">
-        <center>Please log in using your Authcate Details
-        </center><p />
-        <table border="0" align="center" cellspacing="5">
-            <tr>
-                <td>Authcate Username</td>
-                <td>Authcate Password</td>
-            </tr>
-            <tr>
-                <td><input type="text" name="uname"
-                           size="15"></td>
-                <td><input type="password" name="pword"
-                           size="15"></td>
-            </tr>
-        </table><p />
-        <center>
-            <input type="submit" value="Log in">
-            <input type="reset" value="Reset">
-        </center>
-        <?php
-        }
-        else
-        {
-            $LDAPconn=@ldap_connect(MONASH_DIR);
-            if($LDAPconn)
-            {
-                $LDAPsearch=@ldap_search($LDAPconn,MONASH_FILTER,
-                    "uid=".$_POST["uname"]);
-                if($LDAPsearch)
-                {
-                    $LDAPinfo =
-                        @ldap_first_entry($LDAPconn,$LDAPsearch);
-                    if($LDAPinfo)
-                    {
-                        $LDAPresult=
-                            @ldap_bind($LDAPconn,
-                                ldap_get_dn($LDAPconn, $LDAPinfo),
-                                $_POST["pword"]);
-                    }
-                    else
-                    {
-                        $LDAPresult=0;
-                    }
-                }
-                else
-                {
-                    $LDAPresult=0;
-                }
-            }
-            else
-            {
-                $LDAPresult=0;
-            }
-            if($LDAPresult)
-            {
-                echo "Valid User";
-            }
-            else
-            {
-                echo "Invalid User";
-            }
-        }
-        ?>
+
 </div>
 
 

@@ -29,6 +29,8 @@
                 <div class="col-md-12">
                     <!-- write content here -->
                     <h1>Main Page</h1>
+
+                    <?php var_dump($_POST)?>
                 </div>
             </div>
 
