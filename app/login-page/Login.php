@@ -7,30 +7,17 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>
-        Ruthless Real Estate
-    </title>
+Ruthless Real Estate
+</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
-
-<?php
-include ("../Config/Connection.php");
-$conn = oci_connect($UName,$PWord,$DB);
-if (!$conn) {
-    $e = oci_error();
-    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-}
-$query = "SELECT * FROM PROPERTY_TYPE";
-$stmt = oci_parse($conn, $query);
-oci_execute($stmt);
-?>
-
 <body>
-<div class="row" id="main-header">
-    <?php include '../Elements/MainHeader.php' ?>
+    <div class="row" id="main-header">
+        <?php include '../Elements/MainHeader.php' ?>
 </div>
 
 <div class="row" id="main-area">
@@ -41,7 +28,7 @@ oci_execute($stmt);
             <!-- Main contents will goes here -->
             <div class="col-md-12">
                 <!-- write content here -->
-                <h1>Property Types</h1>
+                <h1>Main Page</h1>
             </div>
         </div>
 
@@ -61,3 +48,4 @@ oci_execute($stmt);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+

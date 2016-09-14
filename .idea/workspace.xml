@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6070e4a5-4335-4f8c-ae76-776747dd5617" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/login-page/Login.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/login-page/login_test.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php" afterPath="$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php" />
     </list>
@@ -27,8 +29,8 @@
       <file leaf-file-name="Home.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/main-page/Home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+            <state relative-caret-position="289">
+              <caret line="17" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -44,24 +46,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainHeader.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Elements/MainHeader.php">
+      <file leaf-file-name="PropertyTypes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="125">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <marker date="1473827435454" expanded="true" signature="850:877" ph="SELECT * FRO... PROPERTY_TYPE" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PropertyTypes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php">
+      <file leaf-file-name="UpdateProperty.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/UpdateProperty.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-              <folding>
-                <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
-              </folding>
+            <state relative-caret-position="221">
+              <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,37 +88,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="34">
-                <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-                <folding />
-              </first_editor>
-              <second_editor />
+      <file leaf-file-name="BrowseManageProperty.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="43" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="7" />
+              <folding>
+                <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitattributes" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/login-page/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="451">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BrowseManageProperty.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
+      <file leaf-file-name="login_test.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/login-page/login_test.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
-              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-              <folding>
-                <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,6 +150,8 @@
         <option value="$PROJECT_DIR$/app/manage-clients/ManageClients.php" />
         <option value="$PROJECT_DIR$/app/Elements/Nav.php" />
         <option value="$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php" />
+        <option value="$PROJECT_DIR$/app/login-page/Login.php" />
+        <option value="$PROJECT_DIR$/app/login-page/login_test.php" />
       </list>
     </option>
   </component>
@@ -296,7 +297,43 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="login-page" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ruthless" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ruthless" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Images" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ruthless" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ruthless" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Elements" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -363,17 +400,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Ruthless\app\main-page" />
-      <recent name="D:\Ruthless\app\manage-clients" />
-      <recent name="D:\Ruthless\app\manage-property-types" />
-      <recent name="D:\Ruthless\app\Browse or Manage Properties" />
-      <recent name="D:\Ruthless\app\Add Property" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Ruthless\app" />
       <recent name="D:\Ruthless\app\Elements" />
       <recent name="D:\Ruthless\app\Images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Commander\Documents\GitHub\FIT2076\Ruthless\app" />
+      <recent name="D:\Ruthless\app\main-page" />
+      <recent name="D:\Ruthless\app\manage-clients" />
+      <recent name="D:\Ruthless\app\manage-property-types" />
+      <recent name="D:\Ruthless\app\Browse or Manage Properties" />
     </key>
   </component>
   <component name="RunManager">
@@ -439,7 +476,7 @@
       <updated>1473224076367</updated>
       <workItem from="1473224077921" duration="3006000" />
       <workItem from="1473816220861" duration="443000" />
-      <workItem from="1473826616398" duration="469000" />
+      <workItem from="1473826616398" duration="1414000" />
     </task>
     <task id="LOCAL-00001" summary="Property Type">
       <created>1473826718244</created>
@@ -448,11 +485,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473826718244</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Property Type">
+      <created>1473827117882</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1473827117882</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3918000" />
+    <option name="totallyTimeSpent" value="4863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -527,7 +571,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827435454" expanded="true" signature="850:877" ph="SELECT * FRO... PROPERTY_TYPE" />
           </folding>
         </state>
       </provider>
@@ -619,7 +663,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827435454" expanded="true" signature="850:877" ph="SELECT * FRO... PROPERTY_TYPE" />
           </folding>
         </state>
       </provider>
@@ -693,14 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/main-page/Home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Elements/MainHeader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -729,22 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Config/Connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Elements/SideBar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Elements/Nav.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -761,23 +781,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Config/Connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/manage-property-types/PropertyTypes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        <state relative-caret-position="125">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <marker date="1473827083562" expanded="true" signature="735:762" ph="SELECT * FRO... PROPERTY_TYPE" />
+            <marker date="1473827435454" expanded="true" signature="850:877" ph="SELECT * FRO... PROPERTY_TYPE" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Elements/SideBar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/UpdateProperty.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/browse-manage-properties/BrowseManageProperty.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+        <state relative-caret-position="196">
+          <caret line="43" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="7" />
           <folding>
             <marker date="1473826608853" expanded="true" signature="1579:1786" ph="SELECT p.pro... property" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main-page/Home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/example0205.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/login-page/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/login-page/login_test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
