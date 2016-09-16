@@ -28,6 +28,22 @@
             <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Browse Properties</h1>
+                <div class="row search-add-row">
+                    <div class="col-md-5">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Enter suburb or property type...">
+                                    <div class="input-group-addon" role="button">Search</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 offset-md-4">
+                        <a class="btn btn-primary" href="../add-property/AddProperty.php" role="button">New Property</a>
+                    </div>
+                </div>
+
                 <div class="row" id="properties-table">
                     <div class="col-md-12">
                         <?php

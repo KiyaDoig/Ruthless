@@ -53,8 +53,10 @@ function selectType($value1, $value2)
                         $query='BEGIN getPropertyById(:arg_pid, :pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
                         $stmt = oci_parse($conn, $query);
 
-                       oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
-                       
+                        // TODO (testing only) -put this back and remove j
+                        //oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
+                        $j = 2;
+                        oci_bind_by_name($stmt, ":arg_pid", $j);
                         //need to specify maximum length of output parameter
                         oci_bind_by_name($stmt,":pid", $pid, 10);
                         oci_bind_by_name($stmt,":pnum", $pnum, 20);
