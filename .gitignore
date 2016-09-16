@@ -3,3 +3,4 @@
 /tmp/*
 /logs/*
 .idea/workspace.xml
+app/Config/Connection.php
