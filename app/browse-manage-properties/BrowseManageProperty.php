@@ -71,16 +71,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 offset-md-9">
+                    <div class="col-md-2 offset-md-8">
                         <form method="post" Action="UpdateProperty.php">
                             <div id="hidden">
                                 <input id="propId" type="text" name="activePropertyId"> </input>
                             </div>
-                            <a href="UpdateProperty.php" id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</a>
+                            <button id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</button>
                         </form>
 
+                    </div>
+                    <div class="col-md-2">
                         <button type="button" class="btn btn-secondary">Delete</button>
-
                     </div>
                 </div>
             </div>

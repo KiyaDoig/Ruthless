@@ -1,3 +1,14 @@
+<?php
+function selectType($value1, $value2)
+{
+    $strSelect = "";
+    if($value1 == $value2)
+    {
+        $strSelect = " Selected";
+    }
+    return $strSelect;
+}
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -28,10 +39,7 @@
             <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Update Property</h1>
-
-               <?php  var_dump($_POST); ?>
-
-                    <div class="row" id="properties-table">
+                <div class="row">
                     <div class="col-md-12">
                         <?php
                         include ("../Config/Connection.php");
@@ -45,39 +53,91 @@
                         $query='BEGIN getPropertyById(:arg_pid, :pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
                         $stmt = oci_parse($conn, $query);
 
-                        // USE THE POST VARIABLE
-                        $j = 2;
-
-                        oci_bind_by_name($stmt, ":arg_pid", $j);
+                       oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
+                       
                         //need to specify maximum length of output parameter
                         oci_bind_by_name($stmt,":pid", $pid, 10);
                         oci_bind_by_name($stmt,":pnum", $pnum, 20);
                         oci_bind_by_name($stmt,":pstreet", $pstreet, 20);
                         oci_bind_by_name($stmt,":psuburb", $psuburb, 40);
-                        oci_bind_by_name($stmt,":pstate", $pstatet, 20);
+                        oci_bind_by_name($stmt,":pstate", $pstate, 20);
                         oci_bind_by_name($stmt,":pzip", $pzip, 10);
                         oci_bind_by_name($stmt,":ptype", $ptype, 10);
 
                         oci_execute($stmt);
                         ?>
-                        <table>
+
                         <?php
-                        echo "<tr>";
-                        echo "<td>$pid</td>";
-                        echo "<td>$pnum</td>";
-                        echo "<td>$pstreet</td>";
-                        echo "<td>$psuburb</td>";
-                        echo "<td>$pstatet</td>";
-                        echo "</tr>";
+                        // Get all property types
+                        $query= "SELECT type_id, type_name FROM property_type ORDER BY type_name";
+                        $stmt = oci_parse($conn, $query);
+
+                        oci_execute($stmt);
+                        $Types = oci_fetch_array ($stmt);
+
+
                         ?>
-                        </table>
 
+                        <form method="post" Action="ManagePropertyUpdate.php">
+                            <div class="form-group row">
+                                <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
+                                <div class="col-xs-10">
+                                    <input name="id" class="form-control" type="number" value="<?php echo $pid;?>" id="prop-id-input" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="street-num-input" class="col-xs-2 col-form-label">Street Number</label>
+                                <div class="col-xs-10">
+                                    <input name="streetNum" class="form-control" maxlength="10" type="text" value="<?php echo $pnum;?>" id="street-num-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="street-name-input" class="col-xs-2 col-form-label">Street Name</label>
+                                <div class="col-xs-10">
+                                    <input name="streetName" class="form-control" type="text" value="<?php echo $pstreet;?>" id="street-name-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="suburb-input" class="col-xs-2 col-form-label">Suburb</label>
+                                <div class="col-xs-10">
+                                    <input name="suburb" class="form-control" type="text" value="<?php echo $psuburb;?>" id="suburb-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="state-input" class="col-xs-2 col-form-label">State</label>
+                                <div class="col-xs-10">
+                                    <input name="state" class="form-control" maxlength="6" type="text" value="<?php echo $pstate;?>" id="state-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="zip-input" class="col-xs-2 col-form-label">ZIP</label>
+                                <div class="col-xs-10">
+                                    <input name="zip" class="form-control" maxlength="4" type="text" value="<?php echo $pzip;?>" id="zip-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type-input" class="col-xs-2 col-form-label">Property Type</label>
+                                <div class="col-xs-10">
+                                    <select name="type" class="form-control">
+                                        <?php
+                                        while ($types = oci_fetch_array ($stmt))
+                                        {
+                                            ?>
+                                            <option value="<?php echo $types["TYPE_ID"];?>"
+                                                <?php echo selectType($ptype, $types["TYPE_NAME"]);?>>
+                                                <?php echo $types["TYPE_NAME"]; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1 offset-md-11">
+                                <button type="submit" role="button" class="btn btn-primary">Done</button>
+                            </div>
 
-                    </div>
-                </div>
-                <d   class="row">
-                    <div class="col-md-3 offset-md-9">
-
+                        </form>
                     </div>
                 </div>
             </div>
