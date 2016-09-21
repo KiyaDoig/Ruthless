@@ -53,10 +53,8 @@ function selectType($value1, $value2)
                         $query='BEGIN getPropertyById(:arg_pid, :pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
                         $stmt = oci_parse($conn, $query);
 
-                        // TODO (testing only) -put this back and remove j
-                        //oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
-                        $j = 2;
-                        oci_bind_by_name($stmt, ":arg_pid", $j);
+                        oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
+                       
                         //need to specify maximum length of output parameter
                         oci_bind_by_name($stmt,":pid", $pid, 10);
                         oci_bind_by_name($stmt,":pnum", $pnum, 20);
@@ -146,8 +144,10 @@ function selectType($value1, $value2)
         </div>
 
         <!-- Add a footer to each displayed page -->
-        <div class="row">
-            <?php include '../Elements/Footer.php' ?>
+        <div class="col-md-12" >
+            <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
+                <a class="navbar-brand" href="#">Footer</a>
+            </nav>
         </div>
     </div>
 
