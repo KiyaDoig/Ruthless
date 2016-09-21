@@ -15,34 +15,45 @@
 
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
+
+<?php
+include ("../Config/Connection.php");
+$conn = oci_connect($UName,$PWord,$DB);
+if (!$conn) {
+    $e = oci_error();
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+$query = "SELECT * FROM PROPERTY_TYPE";
+$stmt = oci_parse($conn, $query);
+oci_execute($stmt);
+?>
+
 <body>
-    <div class="row" id="main-header">
-        <?php include '../Elements/MainHeader.php' ?>
-    </div>
+<div class="row" id="main-header">
+    <?php include '../Elements/MainHeader.php' ?>
+</div>
 
-    <div class="row" id="main-area">
-        <?php include '../Elements/SideBar.php' ?>
-        <!-- Here's where I want my views to be displayed -->
-        <div class="col-md-9 main-content">
-            <div class="row">
-                <!-- Main contents will goes here -->
-                <div class="col-md-12">
-                    <!-- write content here -->
-                    <h1>Main Page</h1>
-
-                    <?php var_dump($_POST)?>
-                </div>
-            </div>
-
-            <!-- Add a footer to each displayed page -->
-            <div class="col-md-12" >
-                <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                    <a class="navbar-brand" href="#">Footer</a>
-                </nav>
+<div class="row" id="main-area">
+    <?php include '../Elements/SideBar.php' ?>
+    <!-- Here's where I want my views to be displayed -->
+    <div class="col-md-9 main-content">
+        <div class="row">
+            <!-- Main contents will goes here -->
+            <div class="col-md-12">
+                <!-- write content here -->
+                <h1>Documentation</h1>
             </div>
         </div>
 
+        <!-- Add a footer to each displayed page -->
+        <div class="col-md-12" >
+            <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
+                <a class="navbar-brand" href="#">Footer</a>
+            </nav>
+        </div>
     </div>
+
+</div>
 
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->

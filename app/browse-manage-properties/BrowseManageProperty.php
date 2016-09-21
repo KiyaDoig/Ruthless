@@ -28,6 +28,22 @@
             <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Browse Properties</h1>
+                <div class="row search-add-row">
+                    <div class="col-md-5">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Enter suburb or property type...">
+                                    <div class="input-group-addon" role="button">Search</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 offset-md-4">
+                        <a class="btn btn-primary" href="../add-property/AddProperty.php" role="button">New Property</a>
+                    </div>
+                </div>
+
                 <div class="row" id="properties-table">
                     <div class="col-md-12">
                         <?php
@@ -71,24 +87,27 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 offset-md-9">
+                    <div class="col-md-2 offset-md-8">
                         <form method="post" Action="UpdateProperty.php">
                             <div id="hidden">
                                 <input id="propId" type="text" name="activePropertyId"> </input>
                             </div>
-                            <a href="UpdateProperty.php" id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</a>
+                            <button id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</button>
                         </form>
 
+                    </div>
+                    <div class="col-md-2">
                         <button type="button" class="btn btn-secondary">Delete</button>
-
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Add a footer to each displayed page -->
-        <div class="row">
-            <?php include '../Elements/Footer.php' ?>
+        <div class="col-md-12" >
+            <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
+                <a class="navbar-brand" href="#">Footer</a>
+            </nav>
         </div>
     </div>
 
