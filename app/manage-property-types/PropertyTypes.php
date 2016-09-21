@@ -30,6 +30,7 @@ oci_execute($stmt);
 </div>
 
 <div class="row" id="main-area">
+    <p>hi</p>
     <?php include '../Elements/SideBar.php' ?>
     <!-- Here's where I want my views to be displayed -->
     <div class="col-md-9 main-content">
