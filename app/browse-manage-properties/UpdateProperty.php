@@ -9,6 +9,7 @@ function selectType($value1, $value2)
     return $strSelect;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -26,6 +27,7 @@ function selectType($value1, $value2)
 
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <body>
 <div class="row" id="main-header">
     <?php include '../Elements/MainHeader.php' ?>
@@ -54,7 +56,6 @@ function selectType($value1, $value2)
                         $stmt = oci_parse($conn, $query);
 
                         oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
-                       
                         //need to specify maximum length of output parameter
                         oci_bind_by_name($stmt,":pid", $pid, 10);
                         oci_bind_by_name($stmt,":pnum", $pnum, 20);
@@ -74,7 +75,6 @@ function selectType($value1, $value2)
 
                         oci_execute($stmt);
                         $Types = oci_fetch_array ($stmt);
-
 
                         ?>
 
@@ -133,10 +133,40 @@ function selectType($value1, $value2)
                                     </select>
                                 </div>
                             </div>
+                            <!-- Images -->
+                            <div class="row" id="image-upload-row">
+                                <div class="col-md-8">
+                                    <h5 id="images-heading">Images</h5>
+                                </div>
+
+                                <div class="col-md-11" id="image-upload">
+                                    <div class="col-md-12" id="images">
+                                        <?php
+                                        $conn = oci_connect($UName,$PWord,$DB);
+                                        if (!$conn) {
+                                            $e = oci_error();
+                                            trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+                                        }
+
+                                        $query = "SELECT image_name FROM Property_Image where PROPERTY_ID =".$_POST["activePropertyId"];
+                                        $stmt = oci_parse($conn, $query);
+                                        oci_execute($stmt);
+
+                                        // Display the images
+                                        while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                            foreach ($row as $item) {
+                                                echo "<div class='col-md-4' id='image-div'>";
+                                                echo '<img id="property-image" src="../../property_images/'.$item.'">';
+                                                echo "</div>";
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-1 offset-md-11">
                                 <button type="submit" role="button" class="btn btn-primary">Done</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
