@@ -13,8 +13,7 @@ if(empty($_POST["uname"]))
 {
 ?>
 <form method="post" action="login_test.php">
-    <center>Please log in using your Authcate Details
-    </center><p />
+    <p>Please log in using your Authcate Details</p>
     <table border="0" align="center" cellspacing="5">
         <tr>
             <td>Authcate Username</td>

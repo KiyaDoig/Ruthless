@@ -58,13 +58,13 @@ function compareDates($input)
                         ?>
 
                         <!-- TODO input validation on date -->
-                        <form id="prop-form" data-toggle="validator" method="post" Action="ManagePropertyCreate.php" id="property-form">
-                            <!--<div class="form-group date row">
+                        <form id="prop-form" data-toggle="validator" method="post" Action="ManagePropertyCreate.php">
+                            <div class="form-group date row">
                                 <label for="listing-date-input" class="col-xs-2 col-form-label">Listing Date</label>
                                 <div class="col-xs-10">
-                                    <input name="listingDate" class="form-control" value="" type="date" id="listing-date-input" required>
+                                    <input name="listingDate" class="form-control" value="" type="text" id="listing-date-input" required>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="form-group street-num row">
                                 <label for="street-num-input" class="col-xs-2 col-form-label">Street Number</label>
                                 <div class="col-xs-10">
@@ -121,66 +121,9 @@ function compareDates($input)
                             </div>
 
                             <div class="form-group col-md-1 offset-md-11">
-                                <button id="done-button" type="submit" role="button" onclick="go()" class="btn btn-primary">Done</button>
+                                <button id="done-button" type="submit" role="button" onclick="go()" class="btn btn-primary">CREATE</button>
                             </div>
-
                         </form>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h5 id="images-heading">Images</h5>
-                            </div>
-
-                            <div class="col-md-11" id="image-upload">
-                                <?php
-                                if (!isset($_FILES["userfile"]["tmp_name"]))
-                                {
-                                    ?>
-
-                                    <div class="col-md-12" id="images">
-
-                                    </div>
-                                    <div class="col-md-6 offset-md-6">
-                                        <form method="post" enctype="multipart/form-data"
-                                              action="AddProperty.php">
-                                            <input type="file" size="50" name="userfile">
-                                            <button type="submit" role="button" class="btn btn-secondary">Upload File</button>
-
-                                        </form>
-                                    </div>
-
-                                    <?php
-                                }
-                                else
-                                {
-                                    $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/".$_FILES["userfile"]["name"];
-                                    if(!move_uploaded_file($_FILES["userfile"]
-                                    ["tmp_name"],$upfile))
-                                    {
-                                        echo "ERROR: Could Not Move File into Directory";
-                                    }
-                                    if($_FILES["userfile"]["size"] == 0)
-                                    {
-                                        echo "ERROR: Uploaded file is zero length";
-                                    }
-                                    if($_FILES["userfile"]["type"] != "image/gif" &&
-                                        $_FILES["userfile"]["type"] != "image/pjpeg" &&
-                                        $_FILES["userfile"]["type"] != "image/png" &&
-                                        $_FILES["userfile"]["type"] != "image/jpeg")
-
-                                    {
-                                        echo "ERROR: You may only upload .jpg, .png or .gif files";
-                                    }
-                                    else
-                                    {
-                                       // Display the image from the DB
-
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -204,7 +147,7 @@ function compareDates($input)
         var dd = ("0" + (today.getDate())).slice(-2);
         var mm = ("0" + (today.getMonth() +　1)).slice(-2);
         var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd ;
+        today = dd + '/' + mm + '/' + yyyy ;
         $("#listing-date-input").attr("value", today);
     }, false);
 
