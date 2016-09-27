@@ -114,7 +114,7 @@ body {
     padding-bottom: 30px;
 }
 
-#properties-table {
+#properties-table, #edit-properties-table {
     max-height: 600px;
     overflow-y: auto;
     margin-bottom: 20px;
@@ -184,3 +184,16 @@ body {
     position: relative;
 }
 
+/* Multiple Property Edit */
+
+#edit-properties-table {
+    padding: 0 40px 40px 40px;
+}
+
+#input-error {
+    visibility: hidden;
+}
+
+#update-success-div {
+    min-height: 75px;
+}
