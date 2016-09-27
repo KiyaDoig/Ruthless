@@ -19,9 +19,8 @@ oci_execute($stmt);
 
 header("Location: BrowseManageProperty.php");
 
-?>
-    <!-- Clean-up -->
-<?php
+
+// Clean-up
 oci_free_statement($stmt);
 oci_close($conn);
 ?>

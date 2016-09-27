@@ -112,11 +112,10 @@ function compareDates($input)
                                     </select>
                                 </div>
                             </div>
-                            <!-- TODO price and seller error handling -->
-                            <div class="form-group price row">
+                           <div class="form-group price row">
                                 <label for="price-input" class="col-xs-2 col-form-label">Property Price (Numeric Only)</label>
                                 <div class="col-xs-10">
-                                    <input name="price" class="form-control" maxlength="4" type="number" id="price-input" required>
+                                    <input name="price" class="form-control" maxlength="4" min="1" type="number" id="price-input" required>
                                 </div>
                             </div>
 
@@ -151,6 +150,8 @@ function compareDates($input)
         $("#listing-date-input").attr("value", today);
     }, false);
 
+    // Handle form validation
+
     var inputElements = [
         "street-num-input",
         "street-name-input",
@@ -158,29 +159,26 @@ function compareDates($input)
         "state-input",
         "zip-input"
     ];
-    var streetNumInput = document.getElementById("street-num-input");
-    var streetNameInput = document.getElementById("street-name-input");
-    var suburbInput = document.getElementById("suburb-input");
-    var stateNumInput = document.getElementById("state-input");
-    var zipNumInput = document.getElementById("zip-input");
+
+    var streetNumInput = document.getElementById(inputElements[0]);
+    var streetNameInput = document.getElementById(inputElements[1]);
+    var suburbInput = document.getElementById(inputElements[2]);
+    var stateNumInput = document.getElementById(inputElements[3]);
+    var zipNumInput = document.getElementById(inputElements[4]);
 
     // Add or remove bootstrap styling on key-up
     streetNumInput.addEventListener("keyup", function (event) {
         handleValidation(streetNumInput)
     }, false);
-    // Add or remove bootstrap styling on key-up
     streetNameInput.addEventListener("keyup", function (event) {
         handleValidation(streetNameInput)
     }, false);
-    // Add or remove bootstrap styling on key-up
     suburbInput.addEventListener("keyup", function (event) {
         handleValidation(suburbInput)
     }, false);
-    // Add or remove bootstrap styling on key-up
     stateNumInput.addEventListener("keyup", function (event) {
         handleValidation(stateNumInput)
     }, false);
-    // Add or remove bootstrap styling on key-up
     zipNumInput.addEventListener("keyup", function (event) {
         handleValidation(zipNumInput)
     }, false);
