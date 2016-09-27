@@ -16,18 +16,6 @@
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
 
-<?php
-include ("../Config/Connection.php");
-$conn = oci_connect($UName,$PWord,$DB);
-if (!$conn) {
-    $e = oci_error();
-    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-}
-$query = "SELECT * FROM PROPERTY_TYPE";
-$stmt = oci_parse($conn, $query);
-oci_execute($stmt);
-?>
-
 <body>
 <div class="row" id="main-header">
     <?php include '../Elements/MainHeader.php' ?>
