@@ -124,6 +124,15 @@ body {
     width: 400px;
 }
 
+/* Update Property */
+#result {
+    list-style-type: none;
+    font-weight: bold;
+}
+
+.submit-button {
+    margin-bottom: 80px;
+}
 /* Add Property Page */
 
 #prop-form {
@@ -160,6 +169,10 @@ body {
 
     margin-left:40px;
     padding-bottom: 10px;
+}
+
+#existing-images {
+    padding-bottom: 20px;
 }
 
 #property-image {

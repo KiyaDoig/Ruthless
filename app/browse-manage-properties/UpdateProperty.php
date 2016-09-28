@@ -78,7 +78,7 @@ function selectType($value1, $value2)
 
                         ?>
 
-                        <form method="post" Action="ManagePropertyUpdate.php">
+                        <form method="post" Action="ManagePropertyUpdate.php" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
                                 <div class="col-xs-10">
@@ -140,7 +140,7 @@ function selectType($value1, $value2)
                                 </div>
 
                                 <div class="col-md-11" id="image-upload">
-                                    <div class="col-md-12" id="images">
+                                    <div class="col-md-12" id="existing-images">
                                         <?php
                                         $conn = oci_connect($UName,$PWord,$DB);
                                         if (!$conn) {
@@ -152,20 +152,44 @@ function selectType($value1, $value2)
                                         $stmt = oci_parse($conn, $query);
                                         oci_execute($stmt);
 
-                                        // Display the images
+                                        $count =0;
+                                        // Display the images and checkboxes to mark to delete
                                         while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                            $count++;
                                             foreach ($row as $item) {
-                                                echo "<div class='col-md-4' id='image-div'>";
-                                                echo '<img id="property-image" src="../../property_images/'.$item.'">';
-                                                echo "</div>";
+                                                ?>
+                                                <div class='col-md-6'>
+                                                <img id="property-image" src="../../property_images/<?php echo $item ?>">
+                                                <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="delete_check_list[]" value="<?php echo $item ?>" multiple="multiple">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Delete Image</span>
+                                                </label>
+                                                </div>
+                                             <?php
                                             }
                                         }
+                                        // If no rows returned display message
+                                        if ($count == 0) {
+                                            ?>
+                                            <p>This property currently has no images.</p>
+                                            <?php
+                                        }
                                         ?>
+                                    </div>
+                                    <div>
+                                        <p>Select one or more images for upload</p>
+                                        <ul id="result"></ul>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-xs-10">
+                                            <input type="file" size="50" name="userfile[]" id="image-input" multiple="multiple">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-1 offset-md-11">
-                                <button type="submit" role="button" class="btn btn-primary">Done</button>
+                                <button type="submit" role="button" class="btn btn-primary submit-button">Done</button>
                             </div>
                         </form>
                     </div>
@@ -185,7 +209,20 @@ function selectType($value1, $value2)
 
 <!-- JS Scripts -->
 <script>
+    // Updates the display of file names
+    function listFiles() {
+        var input = $("input[type='file']")[0];
+        var ul = $("#result");
+        ul.empty();
+        for (var i = 0; i < input.files.length; i++) {
+            $('<li>').text(input.files[i].name).appendTo(ul);
+        }
+    }
 
+    // When the file input changes, call listFiles to update the display
+    $('input:file').change(function() {
+        listFiles();
+    });
 </script>
 
 <!-- Clean-up -->

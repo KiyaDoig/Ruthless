@@ -147,7 +147,7 @@ function compareDates($input)
                                 </div>
                             </div>
                             <div class="form-group col-md-1 offset-md-11">
-                                <button id="done-button" type="submit" role="button" onclick="go()" class="btn btn-primary">CREATE</button>
+                                <button type="submit" role="button" onclick="go()" class="btn btn-primary submit-button">CREATE</button>
                             </div>
                         </form>
                     </div>
