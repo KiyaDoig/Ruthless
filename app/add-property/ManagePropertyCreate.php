@@ -9,7 +9,7 @@ $pstate = $_POST["state"];
 $pzip = $_POST["zip"];
 $ptype = $_POST["type"]; //Remember it's returning the type_id not name
 $pldate = (string)$_POST["listingDate"]; //TODO pass it to the DB as a date and put the form back to a date input.
-$plprice =$_POST["price"];
+$plprice = $_POST["price"];
 
 include ("../Config/Connection.php");
 $conn = oci_connect($UName,$PWord,$DB);
@@ -36,6 +36,19 @@ oci_bind_by_name($stmt,":pid", $pid, 10);
 oci_execute($stmt);
 
 $_SESSION['pid']= $pid;
+
+// Insert the features in to the property features table if any were checked.
+if(!empty($_POST['features_check_list'])) {
+    foreach($_POST['features_check_list'] as $featureId) {
+        $query = 'BEGIN addPropertyFeatures(:pid, :fid); END;';
+        $stmt = oci_parse($conn,$query);
+
+        oci_bind_by_name($stmt,":pid", $pid);
+        oci_bind_by_name($stmt,":fid", $featureId);
+
+        oci_execute($stmt);
+    }
+}
 
 header("Location: AddImages.php");
 

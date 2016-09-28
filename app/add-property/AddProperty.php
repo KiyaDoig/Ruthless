@@ -1,4 +1,6 @@
 <?php
+include ("../Config/Connection.php");
+
 function compareDates($input)
 {
     if(new DateTime() > $input)
@@ -42,7 +44,6 @@ function compareDates($input)
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        include ("../Config/Connection.php");
                         $conn = oci_connect($UName,$PWord,$DB);
                         if (!$conn) {
                             $e = oci_error();
@@ -118,7 +119,33 @@ function compareDates($input)
                                     <input name="price" class="form-control" maxlength="4" min="1" type="number" id="price-input" required>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-xs-2"><strong>Property Features:</strong></div>
+                                <div class="col-xs-10">
+                            <?php
+                            $conn = oci_connect($UName,$PWord,$DB);
+                            if (!$conn) {
+                                $e = oci_error();
+                                trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+                            }
 
+                            // Get all features
+                            $query= "SELECT feature_id, feature_name FROM feature ORDER BY feature_name";
+                            $stmt = oci_parse($conn, $query);
+                            oci_execute($stmt);
+                            while ($features = oci_fetch_array ($stmt)) {
+                                ?>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="features_check_list[]" value="<?php echo $features["FEATURE_ID"] ?>" multiple="multiple">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description"><?php echo $features["FEATURE_NAME"] ?></span>
+                                </label>
+                                <?php
+                            }
+
+                            ?>
+                                </div>
+                            </div>
                             <div class="form-group col-md-1 offset-md-11">
                                 <button id="done-button" type="submit" role="button" onclick="go()" class="btn btn-primary">CREATE</button>
                             </div>
