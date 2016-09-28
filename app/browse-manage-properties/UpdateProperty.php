@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 function selectType($value1, $value2)
 {
     $strSelect = "";
@@ -131,6 +133,52 @@ function selectType($value1, $value2)
                                         }
                                         ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-2"><strong>Property Features:</strong></div>
+                                <div class="col-xs-10">
+                                    <?php
+                                    $conn = oci_connect($UName,$PWord,$DB);
+                                    if (!$conn) {
+                                        $e = oci_error();
+                                        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+                                    }
+
+                                    // Get features for the property
+                                    $query= "SELECT pf.feature_id, f.feature_name 
+                                        FROM property_feature pf LEFT JOIN feature f on pf.feature_id = f.feature_id 
+                                        WHERE pf.property_id = '$pid'";
+
+                                    // Create an array of the feature id's for the features which the property has
+                                    $idsOfPropFeatures = [];
+                                    $stmt = oci_parse($conn, $query);
+                                    oci_execute($stmt);
+                                    while ($features = oci_fetch_array ($stmt)) {
+                                        $idsOfPropFeatures[] = $features["FEATURE_ID"];
+                                    }
+
+                                    // ManagePropertyUpdate will use this to identify removed features
+                                    $_SESSION['currentFeatures']= $idsOfPropFeatures;
+
+                                    // Get all features
+                                    $query= "SELECT feature_id, feature_name FROM feature ORDER BY feature_name";
+                                    $stmt = oci_parse($conn, $query);
+                                    oci_execute($stmt);
+                                    while ($features = oci_fetch_array ($stmt)) {
+                                        // If the property has the feature then set checked
+                                        ?>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="features_check_list[]" value="<?php echo $features["FEATURE_ID"] ?>" multiple="multiple"
+                                            <?php if (in_array($features["FEATURE_ID"], $idsOfPropFeatures)){
+                                                echo 'checked="checked"';
+                                            }?>>
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description"><?php echo $features["FEATURE_NAME"] ?></span>
+                                        </label>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <!-- Images -->
