@@ -57,7 +57,6 @@ $_SESSION["page"] = "AddProperty";
                         $stmt = oci_parse($conn, $query);
 
                         oci_execute($stmt);
-                        $Types = oci_fetch_array ($stmt);
                         ?>
 
                         <!-- TODO input validation on date -->

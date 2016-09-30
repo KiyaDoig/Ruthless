@@ -83,8 +83,6 @@ function selectType($value1, $value2)
                         $stmt = oci_parse($conn, $query);
 
                         oci_execute($stmt);
-                        $Types = oci_fetch_array ($stmt);
-
                         ?>
 
                         <!-- Form to display current property details which may be updates-->
