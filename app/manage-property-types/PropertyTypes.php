@@ -22,6 +22,7 @@
 </div>
 
 <div class="row" id="main-area">
+    <p></p>
     <?php include '../Elements/SideBar.php' ?>
     <!-- Here's where I want my views to be displayed -->
     <div class="col-md-9 main-content">
