@@ -6,6 +6,11 @@
 //======================================================================
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
 
 //get all of the values from post
 $pid = $_POST["id"];
@@ -36,11 +41,18 @@ if(!empty($_POST['features_check_list'])) {
             // Remove from property feature
             $query = 'BEGIN deletePropertyFeatures(:pid, :fid); END;';
             $stmt = oci_parse($conn,$query);
-
+            if (!$stmt) {
+                $m = oci_error($conn);
+                throw new Exception($m);
+            }
             oci_bind_by_name($stmt,":pid", $pid);
             oci_bind_by_name($stmt,":fid", $oldFeature);
 
-            oci_execute($stmt);
+            $r = oci_execute($stmt);
+            if (!$r) {
+                $m = oci_error($stmt);
+                throw new Exception($m);
+            }
         }
     }
     foreach($_POST['features_check_list'] as $featureId) {
@@ -50,11 +62,18 @@ if(!empty($_POST['features_check_list'])) {
             // If the feature id is not in the old array but is in the new one, then add the new prop feature
             $query = 'BEGIN addPropertyFeatures(:pid, :fid); END;';
             $stmt = oci_parse($conn,$query);
-
+            if (!$stmt) {
+                $m = oci_error($conn);
+                throw new Exception($m);
+            }
             oci_bind_by_name($stmt,":pid", $pid);
             oci_bind_by_name($stmt,":fid", $featureId);
 
-            oci_execute($stmt);
+            $r = oci_execute($stmt);
+            if (!$r) {
+                $m = oci_error($stmt);
+                throw new Exception($m);
+            }
         }
     }
 }
@@ -64,11 +83,18 @@ else {
         // Remove from property feature
         $query = 'BEGIN deletePropertyFeatures(:pid, :fid); END;';
         $stmt = oci_parse($conn,$query);
-
+        if (!$stmt) {
+            $m = oci_error($conn);
+            throw new Exception($m);
+        }
         oci_bind_by_name($stmt,":pid", $pid);
         oci_bind_by_name($stmt,":fid", $removed);
 
-        oci_execute($stmt);
+        $r = oci_execute($stmt);
+        if (!$r) {
+            $m = oci_error($stmt);
+            throw new Exception($m);
+        }
     }
 }
 
@@ -78,9 +104,16 @@ if(!empty($_POST['delete_check_list'])) {
         // Delete from the DB
         $query = 'BEGIN deleteImageByName(:iname); END;';
         $stmt = oci_parse($conn,$query);
-
+        if (!$stmt) {
+            $m = oci_error($conn);
+            throw new Exception($m);
+        }
         oci_bind_by_name($stmt,":iname", $imageName);
-        oci_execute($stmt);
+        $r = oci_execute($stmt);
+        if (!$r) {
+            $m = oci_error($stmt);
+            throw new Exception($m);
+        }
 
         // Delete the file
         unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $imageName);
@@ -94,8 +127,16 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
             // Make a unique ID for the image name
             $query='BEGIN getNextImageId(:iid); END;';
             $stmt = oci_parse($conn, $query);
+            if (!$stmt) {
+                $m = oci_error($conn);
+                throw new Exception($m);
+            }
             oci_bind_by_name($stmt,":iid", $iid, 20);
-            oci_execute($stmt);
+            $r = oci_execute($stmt);
+            if (!$r) {
+                $m = oci_error($stmt);
+                throw new Exception($m);
+            }
 
             // Move the file
             $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $iid . "_" . $_FILES["userfile"]["name"][$key];
@@ -122,12 +163,20 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
                 // Save image info to DB
                 $query='BEGIN addImage(:iid, :pid, :iname); END;';
                 $stmt = oci_parse($conn, $query);
+                if (!$stmt) {
+                    $m = oci_error($conn);
+                    throw new Exception($m);
+                }
 
                 oci_bind_by_name($stmt,":iid", $iid);
                 oci_bind_by_name($stmt,":pid", $pid);
                 oci_bind_by_name($stmt,":iname", $name);
 
-                oci_execute($stmt);
+                $r = oci_execute($stmt);
+                if (!$r) {
+                    $m = oci_error($stmt);
+                    throw new Exception($m);
+                }
             }
         }
     }
@@ -136,6 +185,10 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
 // Update property record by id
 $query='BEGIN updateProperty(:pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
 $stmt = oci_parse($conn, $query);
+if (!$stmt) {
+    $m = oci_error($conn);
+    throw new Exception($m);
+}
 
 oci_bind_by_name($stmt,":pid", $pid);
 oci_bind_by_name($stmt,":pnum", $pnum);
@@ -145,7 +198,11 @@ oci_bind_by_name($stmt,":pstate", $pstate);
 oci_bind_by_name($stmt,":pzip", $pzip);
 oci_bind_by_name($stmt,":ptype", $ptype);
 
-oci_execute($stmt);
+$r = oci_execute($stmt);
+if (!$r) {
+    $m = oci_error($stmt);
+    throw new Exception($m);
+}
 
 header("Location: BrowseManageProperty.php");
 

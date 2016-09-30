@@ -6,6 +6,12 @@
 //======================================================================
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
+
 ob_start();
 session_start();
 
@@ -69,7 +75,15 @@ $_SESSION["page"] = "MultipleProperty";
                             $query = "SELECT p.property_id, p.property_number, p.property_street, p.property_suburb, p.property_state, p.property_postcode, pl.property_listing_price
                                       FROM property p LEFT JOIN property_listing pl ON p.property_id = pl.property_id";
                             $stmt = oci_parse($conn, $query);
-                            oci_execute($stmt);
+                            if (!$stmt) {
+                                $m = oci_error($conn);
+                                throw new Exception($m);
+                            }
+                            $r = oci_execute($stmt);
+                            if (!$r) {
+                                $m = oci_error($stmt);
+                                throw new Exception($m);
+                            }
                             ?>
                             <table class="table table-hover" id="ptable">
                                 <thead>
