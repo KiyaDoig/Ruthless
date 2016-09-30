@@ -15,7 +15,7 @@ $psuburb = $_POST["suburb"];
 $pstate = $_POST["state"];
 $pzip = $_POST["zip"];
 $ptype = $_POST["type"]; //Remember it's returning the type_id not name
-$pldate = (string)$_POST["listingDate"]; //TODO pass it to the DB as a date and put the form back to a date input.
+$pldate = (string)$_POST["listingDate"];
 $plprice = $_POST["price"];
 
 include ("../Config/Connection.php");

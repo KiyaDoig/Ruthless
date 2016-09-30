@@ -72,13 +72,12 @@ $_SESSION["page"] = "AddProperty";
                         }
                         ?>
 
-                        <!-- TODO input validation on date -->
                         <!-- Display form for new property information -->
                         <form id="prop-form" data-toggle="validator" method="post" Action="ManagePropertyCreate.php">
                             <div class="form-group date row">
                                 <label for="listing-date-input" class="col-xs-2 col-form-label">Listing Date</label>
                                 <div class="col-xs-10">
-                                    <input name="listingDate" class="form-control" value="" type="text" id="listing-date-input" required>
+                                    <input name="listingDate" class="form-control" value="" type="date" id="listing-date-input" required>
                                 </div>
                             </div>
                             <div class="form-group street-num row">
@@ -203,7 +202,7 @@ $_SESSION["page"] = "AddProperty";
         var dd = ("0" + (today.getDate())).slice(-2);
         var mm = ("0" + (today.getMonth() +　1)).slice(-2);
         var yyyy = today.getFullYear();
-        today = dd + '/' + mm + '/' + yyyy ;
+        today = yyyy + '-' + mm + '-' + dd ;
         $("#listing-date-input").attr("value", today);
     }, false);
 
