@@ -32,12 +32,8 @@ function log_exception( Exception $e )
         <link rel="stylesheet" type="text/css" href="../app.css" />
     </head>
     <body>
-    <div class="row" id="main-header">
-        <?php include '../Elements/MainHeader.php' ?>
-    </div>
 
     <div class="row" id="main-area">
-        <?php include '../Elements/SideBar.php' ?>
         <div class="col-md-9 main-content">
             <div class="row">
                 <div class="col-md-12">
