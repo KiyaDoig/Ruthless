@@ -78,8 +78,8 @@ $_SESSION["page"] = "BrowseManageProperty";
                             }
                             $query = "SELECT p.property_id, p.property_number, p.property_street, p.property_suburb, p.property_state, p.property_postcode, pt.type_name
                                       FROM property p LEFT JOIN property_type pt on p.property_type = pt.type_id
-                                      WHERE pt.type_name LIKE ('%".$searchin."%')
-                                      OR p.property_suburb LIKE ('%".$searchin."%')";
+                                      WHERE lower(pt.type_name) LIKE '%' || lower('$searchin') || '%'
+                                      OR lower(p.property_suburb) LIKE '%' || lower('$searchin') || '%'";
 
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
@@ -92,7 +92,9 @@ $_SESSION["page"] = "BrowseManageProperty";
                                 $m = oci_error($stmt);
                                 throw new Exception($m);
                             }
+
                             ?>
+
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -107,13 +109,21 @@ $_SESSION["page"] = "BrowseManageProperty";
                                 </thead>
                                 <tbody>
                                 <?php
+                                $i = 0;
                                 echo "<tr>";
                                 while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                    $i++;
                                     echo "<tr class='property-row' onclick='applyActiveClass(this)'>\n";
                                     foreach ($row as $item) {
                                         echo "    <td >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
                                     }
                                     echo "</tr>\n";
+                                }
+                                // If there are no results display a message
+                                if ($i == 0) {
+                                    echo "<div class='col-md-5 alert alert-warning' role='alert'>";
+                                    echo "<strong>No results found.</strong> Search again.";
+                                    echo "</div>";
                                 }
 
                                 ?>
