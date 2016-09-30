@@ -6,6 +6,11 @@
 //======================================================================
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
 
 ob_start();
 session_start();
@@ -66,6 +71,10 @@ function selectType($value1, $value2)
                         // Get property record by id
                         $query='BEGIN getPropertyById(:arg_pid, :pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
                         $stmt = oci_parse($conn, $query);
+                        if (!$stmt) {
+                            $m = oci_error($conn);
+                            throw new Exception($m);
+                        }
 
                         oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
                         oci_bind_by_name($stmt,":pid", $pid, 10);
@@ -76,13 +85,25 @@ function selectType($value1, $value2)
                         oci_bind_by_name($stmt,":pzip", $pzip, 10);
                         oci_bind_by_name($stmt,":ptype", $ptype, 10);
 
-                        oci_execute($stmt);
+                        $r = oci_execute($stmt);
+                        if (!$r) {
+                            $m = oci_error($stmt);
+                            throw new Exception($m);
+                        }
 
                         // Get all property types
                         $query= "SELECT type_id, type_name FROM property_type ORDER BY type_name";
                         $stmt = oci_parse($conn, $query);
+                        if (!$stmt) {
+                            $m = oci_error($conn);
+                            throw new Exception($m);
+                        }
 
-                        oci_execute($stmt);
+                        $r = oci_execute($stmt);
+                        if (!$r) {
+                            $m = oci_error($stmt);
+                            throw new Exception($m);
+                        }
                         ?>
 
                         <!-- Form to display current property details which may be updates-->
@@ -160,7 +181,15 @@ function selectType($value1, $value2)
                                     // Create an array of the feature id's for the features which the property has
                                     $idsOfPropFeatures = [];
                                     $stmt = oci_parse($conn, $query);
-                                    oci_execute($stmt);
+                                    if (!$stmt) {
+                                        $m = oci_error($conn);
+                                        throw new Exception($m);
+                                    }
+                                    $r = oci_execute($stmt);
+                                    if (!$r) {
+                                        $m = oci_error($stmt);
+                                        throw new Exception($m);
+                                    }
                                     while ($features = oci_fetch_array ($stmt)) {
                                         $idsOfPropFeatures[] = $features["FEATURE_ID"];
                                     }
@@ -171,7 +200,15 @@ function selectType($value1, $value2)
                                     // Get all features
                                     $query= "SELECT feature_id, feature_name FROM feature ORDER BY feature_name";
                                     $stmt = oci_parse($conn, $query);
-                                    oci_execute($stmt);
+                                    if (!$stmt) {
+                                        $m = oci_error($conn);
+                                        throw new Exception($m);
+                                    }
+                                    $r = oci_execute($stmt);
+                                    if (!$r) {
+                                        $m = oci_error($stmt);
+                                        throw new Exception($m);
+                                    }
                                     while ($features = oci_fetch_array ($stmt)) {
                                         // If the property has the feature then set checked
                                         ?>
@@ -205,7 +242,15 @@ function selectType($value1, $value2)
 
                                         $query = "SELECT image_name FROM Property_Image where PROPERTY_ID =".$_POST["activePropertyId"];
                                         $stmt = oci_parse($conn, $query);
-                                        oci_execute($stmt);
+                                        if (!$stmt) {
+                                            $m = oci_error($conn);
+                                            throw new Exception($m);
+                                        }
+                                        $r = oci_execute($stmt);
+                                        if (!$r) {
+                                            $m = oci_error($stmt);
+                                            throw new Exception($m);
+                                        }
 
                                         $count =0;
                                         // Display the images and checkboxes to mark to delete

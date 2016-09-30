@@ -9,6 +9,12 @@
 //======================================================================
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
+
 ob_start();
 session_start();
 // The id for the property to add images for
@@ -70,7 +76,15 @@ $_SESSION["page"] = "AddImages";
 
                             $query = "SELECT image_name FROM Property_Image where PROPERTY_ID =".$pid;
                             $stmt = oci_parse($conn, $query);
-                            oci_execute($stmt);
+                            if (!$stmt) {
+                                $m = oci_error($conn);
+                                throw new Exception($m);
+                            }
+                            $r = oci_execute($stmt);
+                            if (!$r) {
+                                $m = oci_error($stmt);
+                                throw new Exception($m);
+                            }
 
                             // Display the images
                             while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -101,10 +115,18 @@ $_SESSION["page"] = "AddImages";
 
                                 $query='BEGIN deleteImageByName(:iname); END;';
                                 $stmt = oci_parse($conn, $query);
+                                if (!$stmt) {
+                                    $m = oci_error($conn);
+                                    throw new Exception($m);
+                                }
 
                                 oci_bind_by_name($stmt,":iname", $imageName);
 
-                                oci_execute($stmt);
+                                $r = oci_execute($stmt);
+                                if (!$r) {
+                                    $m = oci_error($stmt);
+                                    throw new Exception($m);
+                                }
 
                                 // Delete the file
                                 unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $imageName);
@@ -141,8 +163,16 @@ $_SESSION["page"] = "AddImages";
                             // Stored procedure to get the next image id in sequence
                             $query='BEGIN getNextImageId(:iid); END;';
                             $stmt = oci_parse($conn, $query);
+                            if (!$stmt) {
+                                $m = oci_error($conn);
+                                throw new Exception($m);
+                            }
                             oci_bind_by_name($stmt,":iid", $iid, 20);
-                            oci_execute($stmt);
+                            $r = oci_execute($stmt);
+                            if (!$r) {
+                                $m = oci_error($stmt);
+                                throw new Exception($m);
+                            }
 
                             // Append the unique id to the name and try to move the file to server folder
                             $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $iid . "_" . $_FILES["userfile"]["name"];
@@ -177,12 +207,20 @@ $_SESSION["page"] = "AddImages";
 
                                 $query='BEGIN addImage(:iid, :pid, :iname); END;';
                                 $stmt = oci_parse($conn, $query);
+                                if (!$stmt) {
+                                    $m = oci_error($conn);
+                                    throw new Exception($m);
+                                }
 
                                 oci_bind_by_name($stmt,":iid", $iid);
                                 oci_bind_by_name($stmt,":pid", $pid);
                                 oci_bind_by_name($stmt,":iname", $name);
 
-                                oci_execute($stmt);
+                                $r = oci_execute($stmt);
+                                if (!$r) {
+                                    $m = oci_error($stmt);
+                                    throw new Exception($m);
+                                }
 
                                 ?>
                                 <!-- refresh the view -->

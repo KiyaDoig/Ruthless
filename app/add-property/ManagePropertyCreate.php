@@ -19,6 +19,12 @@ $pldate = (string)$_POST["listingDate"]; //TODO pass it to the DB as a date and 
 $plprice = $_POST["price"];
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
+
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
     $e = oci_error();
@@ -50,11 +56,19 @@ if(!empty($_POST['features_check_list'])) {
     foreach($_POST['features_check_list'] as $featureId) {
         $query = 'BEGIN addPropertyFeatures(:pid, :fid); END;';
         $stmt = oci_parse($conn,$query);
+        if (!$stmt) {
+            $m = oci_error($conn);
+            throw new Exception($m);
+        }
 
         oci_bind_by_name($stmt,":pid", $pid);
         oci_bind_by_name($stmt,":fid", $featureId);
 
-        oci_execute($stmt);
+        $r = oci_execute($stmt);
+        if (!$r) {
+            $m = oci_error($stmt);
+            throw new Exception($m);
+        }
     }
 }
 
