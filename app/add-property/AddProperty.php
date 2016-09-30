@@ -7,6 +7,11 @@
 //======================================================================
 
 include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
 
 ob_start();
 session_start();
@@ -55,9 +60,16 @@ $_SESSION["page"] = "AddProperty";
                         // Get all property types
                         $query= "SELECT type_id, type_name FROM property_type ORDER BY type_name";
                         $stmt = oci_parse($conn, $query);
+                        if (!$stmt) {
+                            $m = oci_error($conn);
+                            throw new Exception($m);
+                        }
 
-                        oci_execute($stmt);
-                        $Types = oci_fetch_array ($stmt);
+                        $r = oci_execute($stmt);
+                        if (!$r) {
+                            $m = oci_error($stmt);
+                            throw new Exception($m);
+                        }
                         ?>
 
                         <!-- TODO input validation on date -->
@@ -136,7 +148,15 @@ $_SESSION["page"] = "AddProperty";
                             // Get all features
                             $query= "SELECT feature_id, feature_name FROM feature ORDER BY feature_name";
                             $stmt = oci_parse($conn, $query);
-                            oci_execute($stmt);
+                            if (!$stmt) {
+                                $m = oci_error($conn);
+                                throw new Exception($m);
+                            }
+                            $r = oci_execute($stmt);
+                            if (!$r) {
+                                $m = oci_error($stmt);
+                                throw new Exception($m);
+                            }
                             // Generate the features check boxes
                             while ($features = oci_fetch_array ($stmt)) {
                                 ?>
