@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <ul class="nav nav-pills nav-stacked" id="main-navigation">
     <li class="nav-item">
-        <a class="nav-link active" href="../main-page/Home.php">Main</a>
+        <a class="nav-link" href="../main-page/Home.php">Main</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../browse-manage-properties/BrowseManageProperty.php">Property</a>
@@ -26,6 +26,15 @@
     </li>
 </ul>
 
+<!-- Set the active class on selected nav item -->
 <script>
-
+    function setActive() {
+        items = document.getElementById('main-navigation').getElementsByTagName('a');
+        for(i = 0; i < items.length; i++) {
+            if(document.location.href.indexOf(items[i].href)>= 0) {
+                items[i].classList.add('active');
+            }
+        }
+    }
+    window.onload = setActive;
 </script>
