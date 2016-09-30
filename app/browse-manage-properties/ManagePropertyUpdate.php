@@ -1,4 +1,10 @@
 <?php
+//======================================================================
+// This page manages property update in the database.
+
+// Author: Kiya
+//======================================================================
+
 include ("../Config/Connection.php");
 
 //get all of the values from post
@@ -127,8 +133,6 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
     }
 }
 
-
-
 // Update property record by id
 $query='BEGIN updateProperty(:pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
 $stmt = oci_parse($conn, $query);
@@ -145,7 +149,8 @@ oci_execute($stmt);
 
 header("Location: BrowseManageProperty.php");
 
-
 //Clean-up
 oci_free_statement($stmt);
 oci_close($conn);
+
+?>

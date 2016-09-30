@@ -1,3 +1,4 @@
+<!-- Main header element -->
 <div class="col-md-12" id="main-header-right">
     <div class="col-md-10"></div>
     <div class="col-md-2">

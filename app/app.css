@@ -96,6 +96,10 @@ body {
     left:inherit;
 }
 
+.display-code {
+    background-color: #3c8dbc;
+}
+
 /* Browse/manage properties page */
 .content {
     padding-left: 30px;

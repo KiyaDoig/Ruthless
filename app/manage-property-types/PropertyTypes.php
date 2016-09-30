@@ -1,3 +1,14 @@
+<?php
+//======================================================================
+// This page
+//
+//======================================================================
+
+ob_start();
+session_start();
+// This page, used for code display
+$_SESSION["page"] = "Types";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +47,12 @@
         <!-- Add a footer to each displayed page -->
         <div class="col-md-12" >
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Types</a>
+                </div>
             </nav>
         </div>
     </div>
@@ -51,3 +67,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

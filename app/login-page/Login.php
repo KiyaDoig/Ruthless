@@ -5,7 +5,7 @@ define("MONASH_FILTER","o=Monash University, c=au");
 
 ob_start();
 session_start();
-
+$_SESSION["page"] = "Login";
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +134,12 @@ session_start();
         <!-- Add a footer to each displayed page -->
         <div class="col-md-12" >
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Login</a>
+                </div>
             </nav>
         </div>
     </div>
@@ -148,3 +153,6 @@ session_start();
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
