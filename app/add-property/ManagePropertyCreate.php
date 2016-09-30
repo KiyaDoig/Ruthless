@@ -1,4 +1,11 @@
-<?php ob_start();
+<?php
+//======================================================================
+// This page manages property create.
+
+// Author: Kiya
+//======================================================================
+
+ob_start();
 session_start();
 
 //get all of the values from post
@@ -35,6 +42,7 @@ oci_bind_by_name($stmt,":pid", $pid, 10);
 
 oci_execute($stmt);
 
+// Active property id, used by add images page
 $_SESSION['pid']= $pid;
 
 // Insert the features in to the property features table if any were checked.
@@ -50,13 +58,10 @@ if(!empty($_POST['features_check_list'])) {
     }
 }
 
+// Display add images page
 header("Location: AddImages.php");
 
-// TODO error page
-
-?>
-<!-- Clean-up -->
-<?php
+// Clean up
 oci_free_statement($stmt);
 oci_close($conn);
 

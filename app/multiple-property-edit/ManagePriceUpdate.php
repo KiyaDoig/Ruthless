@@ -1,7 +1,10 @@
-<!--
-This file manages the price updates in the database.
--->
 <?php
+//======================================================================
+// This page manages the price updates in the database.
+
+// Author: Kiya
+//======================================================================
+
 // Fetch the arrays
 $propertyIds = $_GET["propIds"];
 $prices = $_GET["prices"];
@@ -29,6 +32,7 @@ for ($i = 0; $i < count($pIdArr); $i++) {
     oci_free_statement($stmt);
 }
 
+// Display the Multiple property page and pass that update was a success
 header("Location: MultiplePropertyEdit.php?update=success");
 
 // Close connection

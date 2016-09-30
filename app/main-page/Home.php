@@ -1,3 +1,15 @@
+<?php
+//======================================================================
+// This page
+//
+//======================================================================
+
+ob_start();
+session_start();
+// This page, used for code display
+$_SESSION["page"] = "Main";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +24,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
 <body>
@@ -22,14 +33,10 @@
 
     <div class="row" id="main-area">
         <?php include '../Elements/SideBar.php' ?>
-        <!-- Here's where I want my views to be displayed -->
         <div class="col-md-9 main-content">
             <div class="row">
-                <!-- Main contents will goes here -->
                 <div class="col-md-12">
-                    <!-- write content here -->
                     <h1>Main Page</h1>
-
 
                 </div>
             </div>
@@ -37,13 +44,16 @@
             <!-- Add a footer to each displayed page -->
             <div class="col-md-12" >
                 <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                    <a class="navbar-brand" href="#">Footer</a>
+                    <div class="col-md-2 offset-md-8">
+                        <p>Click to display code:</p>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Main</a>
+                    </div>
                 </nav>
             </div>
         </div>
-
     </div>
-
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
@@ -52,3 +62,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

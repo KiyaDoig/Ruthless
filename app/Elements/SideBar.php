@@ -1,3 +1,4 @@
+<!-- Sidebar, has include for nav element -->
 <div class="col-md-3" id="side-bar">
     <div class="row" id="main-header-left">
         <h3>Ruthless</h3>

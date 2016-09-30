@@ -1,16 +1,19 @@
 <?php
+//======================================================================
+// This page allows the user to create a property in the database
+// The user can input details including property features.
+
+// Author: Kiya
+//======================================================================
+
 include ("../Config/Connection.php");
 
-function compareDates($input)
-{
-    if(new DateTime() > $input)
-    {
-        echo "hi";
-        return "error";
-    }
-    return "success";
-}
+ob_start();
+session_start();
+// This page, used for code display
+$_SESSION["page"] = "AddProperty";
 ?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -25,7 +28,6 @@ function compareDates($input)
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
 <body>
@@ -36,9 +38,9 @@ function compareDates($input)
 <div class="row" id="main-area">
     <!-- Sidebar -->
     <?php include '../Elements/SideBar.php' ?>
+    <!-- Main content -->
     <div class="col-md-9 main-content">
         <div class="row content-row">
-            <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Add Property</h1>
                 <div class="row">
@@ -59,6 +61,7 @@ function compareDates($input)
                         ?>
 
                         <!-- TODO input validation on date -->
+                        <!-- Display form for new property information -->
                         <form id="prop-form" data-toggle="validator" method="post" Action="ManagePropertyCreate.php">
                             <div class="form-group date row">
                                 <label for="listing-date-input" class="col-xs-2 col-form-label">Listing Date</label>
@@ -101,6 +104,7 @@ function compareDates($input)
                                 <div class="col-xs-10">
                                     <select name="type" class="form-control">
                                         <?php
+                                        // Populate the property types drop-down
                                         while ($types = oci_fetch_array ($stmt))
                                         {
                                             ?>
@@ -133,6 +137,7 @@ function compareDates($input)
                             $query= "SELECT feature_id, feature_name FROM feature ORDER BY feature_name";
                             $stmt = oci_parse($conn, $query);
                             oci_execute($stmt);
+                            // Generate the features check boxes
                             while ($features = oci_fetch_array ($stmt)) {
                                 ?>
                                 <label class="custom-control custom-checkbox">
@@ -155,10 +160,15 @@ function compareDates($input)
             </div>
         </div>
 
-        <!-- Add a footer to each displayed page -->
+        <!-- Display a footer -->
         <div class="col-md-12" >
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Property</a>
+                </div>
             </nav>
         </div>
     </div>
@@ -177,8 +187,9 @@ function compareDates($input)
         $("#listing-date-input").attr("value", today);
     }, false);
 
+    //-----------------------------------------------------
     // Handle form validation
-
+    //-----------------------------------------------------
     var inputElements = [
         "street-num-input",
         "street-name-input",
@@ -243,7 +254,6 @@ function compareDates($input)
             }
         }
     }
-
 </script>
 
 <!-- Clean-up -->
@@ -259,3 +269,6 @@ oci_close($conn);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

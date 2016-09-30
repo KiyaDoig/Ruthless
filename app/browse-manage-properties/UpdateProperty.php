@@ -1,6 +1,18 @@
 <?php
+//======================================================================
+// This page allows the user to update a property, including all property details, features and images.
+
+// Author: Kiya
+//======================================================================
+
+include ("../Config/Connection.php");
+
 ob_start();
 session_start();
+// This page, used for code display
+$_SESSION["page"] = "UpdateProperty";
+
+// Select the current property type
 function selectType($value1, $value2)
 {
     $strSelect = "";
@@ -26,7 +38,6 @@ function selectType($value1, $value2)
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -38,15 +49,14 @@ function selectType($value1, $value2)
 <div class="row" id="main-area">
     <!-- Sidebar -->
     <?php include '../Elements/SideBar.php' ?>
+    <!-- Main contents -->
     <div class="col-md-9 main-content">
         <div class="row">
-            <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Update Property</h1>
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        include ("../Config/Connection.php");
                         $conn = oci_connect($UName,$PWord,$DB);
                         if (!$conn) {
                             $e = oci_error();
@@ -58,7 +68,6 @@ function selectType($value1, $value2)
                         $stmt = oci_parse($conn, $query);
 
                         oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
-                        //need to specify maximum length of output parameter
                         oci_bind_by_name($stmt,":pid", $pid, 10);
                         oci_bind_by_name($stmt,":pnum", $pnum, 20);
                         oci_bind_by_name($stmt,":pstreet", $pstreet, 20);
@@ -68,9 +77,7 @@ function selectType($value1, $value2)
                         oci_bind_by_name($stmt,":ptype", $ptype, 10);
 
                         oci_execute($stmt);
-                        ?>
 
-                        <?php
                         // Get all property types
                         $query= "SELECT type_id, type_name FROM property_type ORDER BY type_name";
                         $stmt = oci_parse($conn, $query);
@@ -80,6 +87,7 @@ function selectType($value1, $value2)
 
                         ?>
 
+                        <!-- Form to display current property details which may be updates-->
                         <form method="post" Action="ManagePropertyUpdate.php" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
@@ -122,6 +130,7 @@ function selectType($value1, $value2)
                                 <div class="col-xs-10">
                                     <select name="type" class="form-control">
                                         <?php
+                                        // Get all of the types with the current type selected
                                         while ($types = oci_fetch_array ($stmt))
                                         {
                                             ?>
@@ -236,6 +245,7 @@ function selectType($value1, $value2)
                                     </div>
                                 </div>
                             </div>
+                            <!-- Submit form -->
                             <div class="col-md-1 offset-md-11">
                                 <button type="submit" role="button" class="btn btn-primary submit-button">Done</button>
                             </div>
@@ -245,10 +255,15 @@ function selectType($value1, $value2)
             </div>
         </div>
 
-        <!-- Add a footer to each displayed page -->
+        <!-- Display footer -->
         <div class="col-md-12" >
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Property</a>
+                </div>
             </nav>
         </div>
     </div>
@@ -286,3 +301,6 @@ oci_close($conn);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

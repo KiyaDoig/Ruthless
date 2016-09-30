@@ -1,3 +1,17 @@
+<?php
+//======================================================================
+// This page displays all properties and allows the update of multiple property prices in one action.
+
+// Author: Kiya
+//======================================================================
+
+include ("../Config/Connection.php");
+ob_start();
+session_start();
+
+// This page, used for code display
+$_SESSION["page"] = "MultipleProperty";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +26,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
-<?php
-include ("../Config/Connection.php");
-?>
 <body>
 <div class="row" id="main-header">
     <?php include '../Elements/MainHeader.php' ?>
@@ -25,12 +35,9 @@ include ("../Config/Connection.php");
 
 <div class="row" id="main-area">
     <?php include '../Elements/SideBar.php' ?>
-    <!-- Here's where I want my views to be displayed -->
     <div class="col-md-9 main-content">
         <div class="row">
-            <!-- Main contents will goes here -->
             <div class="col-md-12">
-                <!-- write content here -->
                 <h1>Multiple Property Edit Price</h1>
 
                 <!-- Display a success alert when update is successful-->
@@ -51,7 +58,7 @@ include ("../Config/Connection.php");
                 <div class="row" id="edit-properties-table">
                     <div class="col-md-12">
                         <form name="properties-form">
-                        <!-- Display all properties with editable price -->
+                        <!-- Display all properties with address and editable price as text input field -->
                         <div>
                             <?php
                             $conn = oci_connect($UName,$PWord,$DB);
@@ -99,6 +106,7 @@ include ("../Config/Connection.php");
                 </div>
             </div>
             <div class="row">
+                <!-- Display invalid input error on error -->
                 <div class="col-md-7 offset-md-2" id="input-error">
                     <div class="alert alert-danger" role="alert">
                         <strong>Invalid Input</strong> Price values must be numeric and cannot be empty or less than 1.
@@ -112,17 +120,24 @@ include ("../Config/Connection.php");
         </div>
 
         <!-- Add a footer to each displayed page -->
-        <div class="col-md-12" >
+        <div class="col-md-12">
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Multiple Property</a>
+                </div>
             </nav>
         </div>
     </div>
 
 </div>
 <script>
+    //-----------------------------------------------------
+    // Validate the form
+    //-----------------------------------------------------
     function getUpdatedPrices() {
-        // Validate the form
         var element = document.getElementsByClassName("form-control");
         for (var i = 0; i < element.length; i++) {
             if (!element[i].validity.valid) {
@@ -170,3 +185,6 @@ oci_close($conn);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

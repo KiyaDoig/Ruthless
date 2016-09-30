@@ -1,3 +1,18 @@
+<?php
+//======================================================================
+// This page displays all properties in the database.
+// The user can search to filter the properties displayed, add property, update existing property, and delete a property.
+
+// Author: Kiya
+//======================================================================
+
+include ("../Config/Connection.php");
+
+ob_start();
+session_start();
+// This page, used for code display
+$_SESSION["page"] = "BrowseManageProperty";
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -12,12 +27,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../app.css" />
 </head>
-<?php
-include ("../Config/Connection.php");
-?>
 <body>
 <div class="row" id="main-header">
     <?php include '../Elements/MainHeader.php' ?>
@@ -26,11 +37,12 @@ include ("../Config/Connection.php");
 <div class="row" id="main-area">
     <!-- Sidebar -->
     <?php include '../Elements/SideBar.php' ?>
+    <!-- Main content -->
     <div class="col-md-9 main-content">
         <div class="row">
-            <!-- Main contents will go here -->
             <div class="col-md-12 content">
                 <h1>Browse Properties</h1>
+                <!-- Search bar -->
                 <div class="row search-add-row">
                     <div class="col-md-6">
                         <form method="post" Action="" class="form-inline">
@@ -41,15 +53,15 @@ include ("../Config/Connection.php");
                             </div>
                             <button type="submit" name="search" role="button" class="btn btn-outline-primary">Search</button>
                         </form>
-
                     </div>
                     <div class="col-md-2 offset-md-4">
                         <a class="btn btn-primary" href="../add-property/AddProperty.php" role="button">New Property</a>
                     </div>
                 </div>
-
+                <!-- Properties table -->
                 <div class="row" id="properties-table">
                     <div class="col-md-12">
+                        <!-- Display the search results if search has been utilised, else display all properties -->
                         <?php if (isset($_POST['searchInput']) && !empty($_POST["searchInput"])) { ?>
                             <!-- Display the search results -->
                             <?php
@@ -153,6 +165,7 @@ include ("../Config/Connection.php");
                     </div>
                 </div>
                 <div class="row">
+                    <!-- Update property button -->
                     <div class="col-md-2 offset-md-8">
                         <form method="post" Action="UpdateProperty.php">
                             <div id="hidden">
@@ -161,7 +174,7 @@ include ("../Config/Connection.php");
                             <button id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</button>
                         </form>
                     </div>
-                    <!-- Delete property -->
+                    <!-- Delete property button -->
                     <div class="col-md-2">
                         <!-- Confirmation modal -->
                         <button id="delete-button" type="button" class="btn btn-primary disabled" data-toggle="modal" data-target=".bd-delete-prop-modal-sm">Delete</button>
@@ -194,10 +207,15 @@ include ("../Config/Connection.php");
         </div>
     </div>
 
-    <!-- Add a footer to each displayed page -->
+    <!-- Display footer -->
     <div class="col-md-12">
         <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-            <a class="navbar-brand" href="#">Footer</a>
+            <div class="col-md-2 offset-md-8">
+                <p>Click to display code:</p>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Property</a>
+            </div>
         </nav>
     </div>
 </div>
