@@ -179,7 +179,7 @@ body {
     padding-bottom: 20px;
 }
 
-#property-image {
+.property-image {
     padding-top: 15px;
     padding-right: 10px;
     max-width: 300px;
@@ -213,4 +213,23 @@ body {
 
 #update-success-div {
     min-height: 75px;
+}
+
+/* Images Page */
+#all-images {
+    margin-bottom: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+#prop-info {
+    padding-top: 20px;
+}
+
+#address-line-1, #address-line-2 {
+    font-weight: bold;
+}
+
+#address-line-1 {
+    margin-bottom: 0;
 }

@@ -259,7 +259,7 @@ function selectType($value1, $value2)
                                             foreach ($row as $item) {
                                                 ?>
                                                 <div class='col-md-6'>
-                                                <img id="property-image" src="../../property_images/<?php echo $item ?>">
+                                                <img class="property-image" src="../../property_images/<?php echo $item ?>">
                                                 <label class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" name="delete_check_list[]" value="<?php echo $item ?>" multiple="multiple">
                                                 <span class="custom-control-indicator"></span>

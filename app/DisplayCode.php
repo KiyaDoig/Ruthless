@@ -69,6 +69,8 @@ switch ($page) {
     case "Images":
         echo '<p style="color:red;">Page content by Kiya</p>';
         show_source("images-page/ImagesPage.php");
+        echo '<p style="color:red;">The code to manage update in ManageImagesDelete.php</p>';
+        show_source("images-page/ManageImagesDelete.php");
         break;
 }
 
