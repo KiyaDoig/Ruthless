@@ -29,14 +29,9 @@
 
 <div class="row" id="main-area">
     <?php include '../Elements/SideBar.php' ?>
-    <!-- Here's where I want my views to be displayed -->
     <div class="col-md-9 main-content">
-        <div class="row">
-            <!-- Main contents will goes here -->
-            <div class="col-md-12">
-                <!-- write content here -->
-                <h1>Documentation</h1>
-            </div>
+        <div class="col-md-12">
+            <h1>Documentation</h1>
         </div>
 
         <!-- Add a footer to each displayed page -->

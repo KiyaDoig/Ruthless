@@ -90,7 +90,7 @@ $_SESSION["page"] = "AddImages";
                             while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                 foreach ($row as $item) {
                                     echo "<div class='col-md-4' id='image-div'>";
-                                    echo '<img id="property-image" src="../../property_images/'.$item.'">';
+                                    echo '<img class="property-image" src="../../property_images/'.$item.'">';
                                     echo "<form method='post' Action=''>";
                                     echo "<input type='hidden' value='$item' name='activeImage'> </input>";
                                     echo "<button class='delete-img-button' id='$item' type='submit' ><img id='delete-img' src='../Images/Delete-48.png'></button>";
@@ -129,7 +129,7 @@ $_SESSION["page"] = "AddImages";
                                 }
 
                                 // Delete the file
-                                unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $imageName);
+                                unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $imageName);
                                 ?>
                                 <!-- refresh the view -->
                                 <script>
@@ -175,7 +175,7 @@ $_SESSION["page"] = "AddImages";
                             }
 
                             // Append the unique id to the name and try to move the file to server folder
-                            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $iid . "_" . $_FILES["userfile"]["name"];
+                            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $iid . "_" . $_FILES["userfile"]["name"];
                             // Error handling
                             if(!move_uploaded_file($_FILES["userfile"]
                             ["tmp_name"],$upfile))

@@ -42,28 +42,27 @@ $_SESSION["page"] = "MultipleProperty";
 <div class="row" id="main-area">
     <?php include '../Elements/SideBar.php' ?>
     <div class="col-md-9 main-content">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Multiple Property Edit Price</h1>
+        <div class="col-md-12">
+            <h1>Multiple Property Edit Price</h1>
 
-                <!-- Display a success alert when update is successful-->
-                <div class="row" id="update-success-div">
-                    <?php
-                    if (isset($_GET["update"]) ) {
-                        ?>
-                        <div class="col-md-7 offset-md-2">
-                            <div class="alert alert-success" role="alert" id="update-success">
-                                <strong>Success!</strong> Prices updated.
-                            </div>
-                        </div>
-                        <?php
-                    }
+            <!-- Display a success alert when update is successful-->
+            <div class="row" id="update-success-div">
+                <?php
+                if (isset($_GET["update"]) ) {
                     ?>
-                </div>
+                    <div class="col-md-7 offset-md-2">
+                        <div class="alert alert-success" role="alert" id="update-success">
+                            <strong>Success!</strong> Prices updated.
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
 
-                <div class="row" id="edit-properties-table">
-                    <div class="col-md-12">
-                        <form name="properties-form">
+            <div class="row" id="edit-properties-table">
+                <div class="col-md-12">
+                    <form name="properties-form">
                         <!-- Display all properties with address and editable price as text input field -->
                         <div>
                             <?php
@@ -116,20 +115,19 @@ $_SESSION["page"] = "MultipleProperty";
                                 </tbody>
                             </table>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- Display invalid input error on error -->
-                <div class="col-md-7 offset-md-2" id="input-error">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Invalid Input</strong> Price values must be numeric and cannot be empty or less than 1.
-                    </div>
+        </div>
+        <div class="row">
+            <!-- Display invalid input error on error -->
+            <div class="col-md-7 offset-md-2" id="input-error">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Invalid Input</strong> Price values must be numeric and cannot be empty or less than 1.
                 </div>
-                <div class="col-md-2 offset-md-1">
-                        <button role="button" type="submit" onclick="return getUpdatedPrices()" class="btn btn-primary">UPDATE ALL</button>
-                    </form>
-                </div>
+            </div>
+            <div class="col-md-2 offset-md-1">
+                <button role="button" type="submit" onclick="return getUpdatedPrices()" class="btn btn-primary">UPDATE ALL</button>
+                </form>
             </div>
         </div>
 

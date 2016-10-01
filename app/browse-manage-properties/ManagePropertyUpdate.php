@@ -116,7 +116,7 @@ if(!empty($_POST['delete_check_list'])) {
         }
 
         // Delete the file
-        unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $imageName);
+        unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $imageName);
     }
 }
 
@@ -139,7 +139,7 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
             }
 
             // Move the file
-            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/Ruthre/property_images/". $iid . "_" . $_FILES["userfile"]["name"][$key];
+            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $iid . "_" . $_FILES["userfile"]["name"][$key];
             if(!move_uploaded_file($_FILES["userfile"]["tmp_name"][$key], $upfile))
             {
                 echo "ERROR: Could Not Move File into Directory";
