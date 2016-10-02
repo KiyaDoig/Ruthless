@@ -20,6 +20,7 @@ if (isset($_SESSION["login"]))
     {
         $_SESSION["login"] = false;
         $_SESSION["tried"] = false;
+        $_SESSION["username"] = "Logged Out";
         header("Location: ../login-page/Login.php?PHPSESSID=".session_id());
     }
     else{
