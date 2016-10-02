@@ -14,7 +14,7 @@ set_exception_handler( "log_exception" );
 
 //TODO Fix values
 //get all of the values from post
-$pid = $_POST["id"];
+$fid = $_POST["id"];
 $fname = $_POST["featureName"];
 $fdescription = $_POST["featureDescription"];
 
@@ -29,7 +29,7 @@ if (!$conn) {
 
 //TODO Add stored procedure
 // Update property record by id
-$query='BEGIN updateFeature(:fid, :fname); END;';
+$query='BEGIN updateFeature(:fid, :fname, :fdescription); END;';
 $stmt = oci_parse($conn, $query);
 if (!$stmt) {
     $m = oci_error($conn);

@@ -71,7 +71,7 @@ function selectType($value1, $value2)
                             // Get property record by id
                             //TODO STORED PROCEDURE
                             //$query='SELECT type_id, type_name FROM property_type WHERE type_id = arg_pid';
-                            $query='BEGIN getFeatureById(:arg_fid, :fid, :fname); END;';
+                            $query='BEGIN getFeatureById(:arg_fid, :fid, :fname, :fdescription); END;';
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
                                 $m = oci_error($conn);
@@ -110,7 +110,7 @@ function selectType($value1, $value2)
                                 <div class="form-group row">
                                     <label for="feature-description-input" class="col-xs-2 col-form-label">Feature Description</label>
                                     <div class="col-xs-10">
-                                        <input name="featureDescription" class="form-control" type="text" value="<?php echo $fname;?>" id="feature-description-input">
+                                        <input name="featureDescription" class="form-control" type="text" value="<?php echo $fdescription;?>" id="feature-description-input">
                                     </div>
                                 </div>
 

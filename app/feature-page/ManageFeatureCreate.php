@@ -34,7 +34,7 @@ if (!$conn) {
 
 // Insert them into the property table
 //TODO Add procedure and fix query
-$query='BEGIN addFeature(:fname, :fid, :fdescription); END;';
+$query='BEGIN addFeature(:fname, :fdescription, :fid); END;';
 $stmt = oci_parse($conn, $query);
 
 oci_bind_by_name($stmt,":fname", $fname);
