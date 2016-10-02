@@ -70,14 +70,15 @@ function selectType($value1, $value2)
 
                             // Get property record by id
                             //TODO STORED PROCEDURE
-                            $query='SELECT type_id, type_name FROM property_type WHERE tupe_id = arg_pid';
+                            //$query='SELECT type_id, type_name FROM property_type WHERE type_id = arg_pid';
+                            $query='BEGIN getPropertyTypeById(:arg_pid, :pid, :ptname); END;';
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
                                 $m = oci_error($conn);
                                 throw new Exception($m);
                             }
 
-                            oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyTypeId"]);
+                            oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
                             oci_bind_by_name($stmt,":pid", $pid, 10);
                             oci_bind_by_name($stmt,":ptname", $ptname, 20);
 
@@ -92,15 +93,16 @@ function selectType($value1, $value2)
                             <!-- Form to display current property types which may be updated-->
                             <form method="post" Action="ManagePropertyTypeUpdate.php" enctype="multipart/form-data">
                                 <div class="form-group row">
-                                    <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
+                                    <label for="prop-id-input" class="col-xs-2 col-form-label">Type ID</label>
                                     <div class="col-xs-10">
                                         <input name="id" class="form-control" type="number" value="<?php echo $pid;?>" id="prop-id-input" readonly>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label for="street-num-input" class="col-xs-2 col-form-label">Street Number</label>
+                                    <label for="suburb-input" class="col-xs-2 col-form-label">Type Name</label>
                                     <div class="col-xs-10">
-                                        <input name="typeName" class="form-control" maxlength="10" type="text" value="<?php echo $ptname;?>" id="typeName-input">
+                                        <input name="typeName" class="form-control" type="text" value="<?php echo $ptname;?>" id="typeName-input">
                                     </div>
                                 </div>
 

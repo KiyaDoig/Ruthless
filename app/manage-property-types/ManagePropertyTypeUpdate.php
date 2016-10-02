@@ -19,7 +19,6 @@ $ptname = $_POST["typeName"];
 
 // Get the previously set features
 session_start();
-$oldFeatures= $_SESSION['currentFeatures'];
 
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
