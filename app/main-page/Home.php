@@ -41,6 +41,8 @@ $_SESSION["page"] = "Main";
                 </div>
             </div>
 
+            <?php echo "Login Status" . var_dump($_SESSION) . "."; ?>
+
             <!-- Add a footer to each displayed page -->
             <div class="col-md-12" >
                 <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">

@@ -20,6 +20,16 @@ Ruthless Real Estate
 //create MDS constants
 define("MONASH_DIR", "ldap.monash.edu.au");
 define("MONASH_FILTER","o=Monash University, c=au");
+
+ob_start();
+session_start();
+
+if (!isset($_SESSION["login"]))
+{
+    $_SESSION["server"] = $_SERVER["PHP_SELF"];
+    $_SESSION["login"] = false;
+}
+
 ?>
 
 <body>
@@ -44,9 +54,20 @@ define("MONASH_FILTER","o=Monash University, c=au");
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
+                            <?php
+                            if($_SESSION["login"] == true){
+                                //If logged in go straight to the home page.
+                                echo "You are logged in";
+                                header("Location: ../main-page/Home.php");
+                            }
+                            else{
+                                echo "You are NOT logged in";
+                            }
+                            ?>
                             <form method="post" Action="">
                                 <center>Please log in using your Authcate Details
                                 </center>
+
                                 <div class="form-group row">
                                     <label for="uname" class="col-xs-2 col-form-label">Username</label>
                                     <div class="col-xs-10">
@@ -62,31 +83,27 @@ define("MONASH_FILTER","o=Monash University, c=au");
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Log in</button>
+                            </form>
 
-                                <?php
-                                }
-                                else
+                            <?php
+                            }
+                            else
+                            {
+                                $LDAPconn=@ldap_connect(MONASH_DIR);
+                                if($LDAPconn)
                                 {
-                                    $LDAPconn=@ldap_connect(MONASH_DIR);
-                                    if($LDAPconn)
+                                    $LDAPsearch=@ldap_search($LDAPconn,MONASH_FILTER,
+                                        "uid=".$_POST["uname"]);
+                                    if($LDAPsearch)
                                     {
-                                        $LDAPsearch=@ldap_search($LDAPconn,MONASH_FILTER,
-                                            "uid=".$_POST["uname"]);
-                                        if($LDAPsearch)
+                                        $LDAPinfo =
+                                            @ldap_first_entry($LDAPconn,$LDAPsearch);
+                                        if($LDAPinfo)
                                         {
-                                            $LDAPinfo =
-                                                @ldap_first_entry($LDAPconn,$LDAPsearch);
-                                            if($LDAPinfo)
-                                            {
-                                                $LDAPresult=
-                                                    @ldap_bind($LDAPconn,
-                                                        ldap_get_dn($LDAPconn, $LDAPinfo),
-                                                        $_POST["pword"]);
-                                            }
-                                            else
-                                            {
-                                                $LDAPresult=0;
-                                            }
+                                            $LDAPresult=
+                                                @ldap_bind($LDAPconn,
+                                                    ldap_get_dn($LDAPconn, $LDAPinfo),
+                                                    $_POST["pword"]);
                                         }
                                         else
                                         {
@@ -97,30 +114,35 @@ define("MONASH_FILTER","o=Monash University, c=au");
                                     {
                                         $LDAPresult=0;
                                     }
-                                    if($LDAPresult)
-                                    {
-                                        //This is where the action can become true
-                                        echo "Valid User";
-                                        header("Location: ../main-page/Home.php");
-                                    }
-                                    else
-                                    {
-                                        //This is where the error message should sit
-                                        echo "Invalid User";
-                                        ?>
-                                            <div class="alert alert-danger" role="alert">
-                                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                                            </div>
-                                        <?php
-                                    }
                                 }
-                                ?>
+                                else
+                                {
+                                    $LDAPresult=0;
+                                }
+                                if($LDAPresult)
+                                {
+                                    //This is where the action can become true
+                                    $_SESSION["login"] = true;
 
-                            </form>
+                                    $_SESSION["username"] = $_POST["uname"];
+
+                                    $temp = $_SESSION["server"];
+                                    //header("Location: $temp");
+                                    header("Location: ../main-page/Home.php");
+                                }
+                                else
+                                {
+                                    //This is where the error message should sit
+                                    $temp = $_SESSION["server"];
+                                    $_SESSION["old"] = true;
+                                    header("Location: Login.php");
+                                }
+                            }
+                            ?>
+
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -132,7 +154,7 @@ define("MONASH_FILTER","o=Monash University, c=au");
                     <p>Click to display code:</p>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Property</a>
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Login Page</a>
                 </div>
             </nav>
         </div>
