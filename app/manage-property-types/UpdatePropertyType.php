@@ -70,7 +70,7 @@ function selectType($value1, $value2)
 
                             // Get property record by id
                             //TODO STORED PROCEDURE
-                            $query='SELECT type_id, type_name FROM property_type ORDER BY type_name';
+                            $query='SELECT type_id, type_name FROM property_type WHERE tupe_id = arg_pid';
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
                                 $m = oci_error($conn);

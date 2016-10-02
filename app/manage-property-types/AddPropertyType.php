@@ -53,7 +53,7 @@ $_SESSION["page"] = "AddPropertyType";
         <div class="col-md-9 main-content">
             <div class="row content-row">
                 <div class="col-md-12 content">
-                    <h1>Add Property</h1>
+                    <h1>Add Property Type</h1>
                     <div class="row">
                         <div class="col-md-12">
                             <?php

@@ -52,7 +52,9 @@ $_SESSION["page"] = "BrowseManagePropertyType";
     <div class="col-md-9 main-content">
         <div class="row">
             <div class="col-md-12 content">
-                <h1>Browse Property Type</h1>
+                <h1>Browse Property Types</h1>
+                <!-- Search bar -->
+                <div class="row search-add-row">
                     <div class="col-md-2 offset-md-4">
                         <a class="btn btn-primary" href="AddPropertyType.php" role="button">New Property Type</a>
                     </div>
@@ -60,54 +62,53 @@ $_SESSION["page"] = "BrowseManagePropertyType";
                 <!-- Properties table -->
                 <div class="row" id="properties-table">
                     <div class="col-md-12">
-                        <!-- Display the search results if search has been utilised, else display all properties -->
-                            <!-- Display all properties -->
-                            <div>
+                        <!-- Display all properties -->
+                        <div>
+                            <?php
+                            $conn = oci_connect($UName,$PWord,$DB);
+                            if (!$conn) {
+                                $e = oci_error();
+                                trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+                            }
+                            $query = "SELECT * FROM property_type";
+                            $stmt = oci_parse($conn, $query);
+                            if (!$stmt) {
+                                $m = oci_error($conn);
+                                throw new Exception($m);
+                            }
+                            $r = oci_execute($stmt);
+                            if (!$r) {
+                                $m = oci_error($stmt);
+                                throw new Exception($m);
+                            }
+                            ?>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Type_ID</th>
+                                    <th>Type_Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 <?php
-                                $conn = oci_connect($UName,$PWord,$DB);
-                                if (!$conn) {
-                                    $e = oci_error();
-                                    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-                                }
-                                $query = "SELECT * FROM property_type";
-                                $stmt = oci_parse($conn, $query);
-                                if (!$stmt) {
-                                    $m = oci_error($conn);
-                                    throw new Exception($m);
-                                }
-                                $r = oci_execute($stmt);
-                                if (!$r) {
-                                    $m = oci_error($stmt);
-                                    throw new Exception($m);
-                                }
-                                ?>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>TYPE_ID</th>
-                                        <th>TYPE_NAME</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    echo "<tr>";
-                                    while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                        echo "<tr class='property-row' onclick='applyActiveClass(this)'>\n";
-                                        foreach ($row as $item) {
-                                            echo "    <td >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
-                                        }
-                                        echo "</tr>\n";
+                                echo "<tr>";
+                                while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                    echo "<tr class='property-row' onclick='applyActiveClass(this)'>\n";
+                                    foreach ($row as $item) {
+                                        echo "    <td >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
                                     }
+                                    echo "</tr>\n";
+                                }
 
-                                    ?>
-                                    </tbody>
-                                </table>
-                                <!-- Clean-up -->
-                                <?php
-                                oci_free_statement($stmt);
-                                oci_close($conn);
                                 ?>
-                            </div>
+                                </tbody>
+                            </table>
+                            <!-- Clean-up -->
+                            <?php
+                            oci_free_statement($stmt);
+                            oci_close($conn);
+                            ?>
+                        </div>
 
                     </div>
                 </div>
@@ -135,7 +136,7 @@ $_SESSION["page"] = "BrowseManagePropertyType";
                                     </div>
                                     <form method="post" Action="ManagePropertyTypeDelete.php">
                                         <div class="modal-body">
-                                            <p>Are you sure you want to delete the property?</p>
+                                            <p>Are you sure you want to delete the property type?</p>
                                         </div>
                                         <div id="hidden">
                                             <input id="propId2" type="text" name="activePropertyId"> </input>
@@ -177,10 +178,10 @@ $_SESSION["page"] = "BrowseManagePropertyType";
         }
         tr.classList.add('active');
         // Set variable
-        activePropertyTypeId = ($('.property-row.active td:first').text());
+        activePropertyId = ($('.property-row.active td:first').text());
         // find the 'propId' input element and set its value to the above variable
-        document.getElementById("propId1").value = activePropertyTypeId;
-        document.getElementById("propId2").value = activePropertyTypeId;
+        document.getElementById("propId1").value = activePropertyId;
+        document.getElementById("propId2").value = activePropertyId;
 
         // Enable update button
         var updateButton = document.getElementById('update-button');

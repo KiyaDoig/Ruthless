@@ -29,7 +29,7 @@ if (!$conn) {
 
 //TODO Add stored procedure
 // Update property record by id
-$query='BEGIN updateProperty(:pid, :pnum, :pstreet, :psuburb, :pstate, :pzip, :ptype); END;';
+$query='BEGIN updatePropertyType(:pid, :ptname); END;';
 $stmt = oci_parse($conn, $query);
 if (!$stmt) {
     $m = oci_error($conn);

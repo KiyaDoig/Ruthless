@@ -13,7 +13,7 @@
 //======================================================================
 
 //get all of the values from post
-$pid = $_POST["activePropertyTypeId"];
+$pid = $_POST["activePropertyId"];
 
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
