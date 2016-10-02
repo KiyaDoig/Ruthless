@@ -28,6 +28,7 @@ if (!isset($_SESSION["login"]))
 {
     $_SESSION["server"] = $_SERVER["PHP_SELF"];
     $_SESSION["login"] = false;
+    $_SESSION["tried"] = false;
 }
 
 ?>
@@ -61,7 +62,14 @@ if (!isset($_SESSION["login"]))
                                 header("Location: ../main-page/Home.php");
                             }
                             else{
-                                echo "You are NOT logged in";
+                                //Not logged in - thus notified
+                                if($_SESSION["tried"] == true){
+                                    ?>
+                                        <div class="alert alert-warning" role="alert">
+                                            <strong>Oh snap!</strong> Please attempt to login again.
+                                        </div>
+                                    <?php
+                                }
                             }
                             ?>
                             <form method="post" Action="">
@@ -124,10 +132,10 @@ if (!isset($_SESSION["login"]))
                                     //This is where the action can become true
                                     $_SESSION["login"] = true;
 
+                                    //Get the username from the person logged in
                                     $_SESSION["username"] = $_POST["uname"];
 
                                     $temp = $_SESSION["server"];
-                                    //header("Location: $temp");
                                     header("Location: ../main-page/Home.php");
                                 }
                                 else
@@ -135,6 +143,10 @@ if (!isset($_SESSION["login"]))
                                     //This is where the error message should sit
                                     $temp = $_SESSION["server"];
                                     $_SESSION["old"] = true;
+
+                                    //Add session variable to add error message.
+                                    $_SESSION["tried"] = true;
+
                                     header("Location: Login.php");
                                 }
                             }
