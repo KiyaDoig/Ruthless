@@ -13,7 +13,7 @@
         <a class="nav-link" href="../manage-property-types/BrowseManagePropertyType.php">Type</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../feature-page/Feature.php">Feature</a>
+        <a class="nav-link" href="../feature-page/BrowseManageFeature.php">Feature</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../multiple-property-edit/MultiplePropertyEdit.php">Multiple Property Edit</a>
