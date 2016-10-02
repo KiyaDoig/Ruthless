@@ -23,7 +23,6 @@ $cstreet = $_POST["streetName"];
 $csuburb = $_POST["suburb"];
 $cstate = $_POST["state"];
 $czip = $_POST["zip"];
-
 $cemail = $_POST["email"];
 $cmobile = $_POST["mobile"];
 $cmailinglist = $_POST["mailingList"];
@@ -42,7 +41,7 @@ if (!$conn) {
 }
 
 // Insert them into the property table
-$query='BEGIN addProperty(:csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :cemail, :cmobile, :cmailinglist, :pid); END;';
+$query='BEGIN addClient(:csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist, :pid); END;';
 $stmt = oci_parse($conn, $query);
 
 oci_bind_by_name($stmt,":csurname", $csurname);

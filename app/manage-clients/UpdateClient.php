@@ -1,6 +1,6 @@
 <?php
 //======================================================================
-// This page allows the user to update a property, including all property details, features and images.
+// This page allows the user to update a client, including all client details.
 
 // Author: Stefan Prioriello
 //======================================================================
@@ -15,7 +15,7 @@ set_exception_handler( "log_exception" );
 ob_start();
 session_start();
 // This page, used for code display
-$_SESSION["page"] = "UpdatePropertyType";
+$_SESSION["page"] = "UpdateClient";
 
 // Select the current property type
 function selectType($value1, $value2)
@@ -58,7 +58,7 @@ function selectType($value1, $value2)
         <div class="col-md-9 main-content">
             <div class="row">
                 <div class="col-md-12 content">
-                    <h1>Update Property</h1>
+                    <h1>Update Client</h1>
                     <div class="row">
                         <div class="col-md-12">
                             <?php
@@ -69,40 +69,105 @@ function selectType($value1, $value2)
                             }
 
                             // Get property record by id
-                            //TODO STORED PROCEDURE
-                            //$query='SELECT type_id, type_name FROM property_type WHERE type_id = arg_pid';
-                            $query='BEGIN getPropertyTypeById(:arg_pid, :pid, :ptname); END;';
+                            $query='BEGIN getClientById(:arg_pid, :pid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
                                 $m = oci_error($conn);
                                 throw new Exception($m);
                             }
 
-                            oci_bind_by_name($stmt, ":arg_pid", $_POST["activePropertyId"]);
+                            oci_bind_by_name($stmt,":arg_pid", $_POST["activePropertyId"]);
                             oci_bind_by_name($stmt,":pid", $pid, 10);
-                            oci_bind_by_name($stmt,":ptname", $ptname, 20);
+                            oci_bind_by_name($stmt,":csurname", $csurname, 40);
+                            oci_bind_by_name($stmt,":cgivenname", $cgivenname, 40);
+                            oci_bind_by_name($stmt,":cnum", $cnum, 20);
+                            oci_bind_by_name($stmt,":cstreet", $cstreet, 20);
+                            oci_bind_by_name($stmt,":csuburb", $csuburb, 40);
+                            oci_bind_by_name($stmt,":cstate", $cstate, 20);
+                            oci_bind_by_name($stmt,":czip", $czip, 10);
+                            oci_bind_by_name($stmt,":cemail", $cemail, 40);
+                            oci_bind_by_name($stmt,":cmobile", $cmobile, 10);
+                            oci_bind_by_name($stmt,":cmailinglist", $cmailinglist, 1);
 
                             $r = oci_execute($stmt);
                             if (!$r) {
                                 $m = oci_error($stmt);
                                 throw new Exception($m);
                             }
-
                             ?>
 
-                            <!-- Form to display current property types which may be updated-->
+                            <!-- Form to display current property details which may be updates-->
                             <form method="post" Action="ManageClientUpdate.php" enctype="multipart/form-data">
                                 <div class="form-group row">
-                                    <label for="prop-id-input" class="col-xs-2 col-form-label">Type ID</label>
+                                    <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
                                     <div class="col-xs-10">
                                         <input name="id" class="form-control" type="number" value="<?php echo $pid;?>" id="prop-id-input" readonly>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="suburb-input" class="col-xs-2 col-form-label">Type Name</label>
+                                <div class="form-group surname row">
+                                    <label for="surname-input" class="col-xs-2 col-form-label">Surname</label>
                                     <div class="col-xs-10">
-                                        <input name="typeName" class="form-control" type="text" value="<?php echo $ptname;?>" id="typeName-input">
+                                        <input name="surname" class="form-control" type="text" value="<?php echo $csurname;?>" id="surname-input" >
+                                    </div>
+                                </div>
+                                <div class="form-group givenName row">
+                                    <label for="given-name-input" class="col-xs-2 col-form-label">Given Name</label>
+                                    <div class="col-xs-10">
+                                        <input name="givenName" class="form-control" type="text" value="<?php echo $cgivenname;?>" id="given-name-input">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="street-num-input" class="col-xs-2 col-form-label">Street Number</label>
+                                    <div class="col-xs-10">
+                                        <input name="streetNum" class="form-control" maxlength="10" type="text" value="<?php echo $cnum;?>" id="street-num-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="street-name-input" class="col-xs-2 col-form-label">Street Name</label>
+                                    <div class="col-xs-10">
+                                        <input name="streetName" class="form-control" type="text" value="<?php echo $cstreet;?>" id="street-name-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="suburb-input" class="col-xs-2 col-form-label">Suburb</label>
+                                    <div class="col-xs-10">
+                                        <input name="suburb" class="form-control" type="text" value="<?php echo $csuburb;?>" id="suburb-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="state-input" class="col-xs-2 col-form-label">State</label>
+                                    <div class="col-xs-10">
+                                        <input name="state" class="form-control" maxlength="6" type="text" value="<?php echo $cstate;?>" id="state-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="zip-input" class="col-xs-2 col-form-label">ZIP</label>
+                                    <div class="col-xs-10">
+                                        <input name="zip" class="form-control" maxlength="4" type="text" value="<?php echo $czip;?>" id="zip-input">
+                                    </div>
+                                </div>
+
+                                <!-- TODO Email validation -->
+                                <div class="form-group email row">
+                                    <label for="email-input" class="col-xs-2 col-form-label">Email</label>
+                                    <div class="col-xs-10">
+                                        <input name="email" class="form-control" type="text" value="<?php echo $cemail;?>" id="email-input">
+                                    </div>
+                                </div>
+                                <!-- TODO Validation and see if there is specific field available -->
+                                <div class="form-group mobile row">
+                                    <label for="mobile-input" class="col-xs-2 col-form-label">Mobile</label>
+                                    <div class="col-xs-10">
+                                        <input name="mobile" class="form-control" maxlength="10" type="text" value="<?php echo $cmobile;?>" id="mobile-input">
+                                    </div>
+                                </div>
+                                <!-- TODO Make it a yes or no drop down -->
+                                <div class="form-group mailingList row">
+                                    <label for="mailing-list-input" class="col-xs-2 col-form-label">Mailing List</label>
+                                    <div class="col-xs-10">
+                                        <input name="mailingList" class="form-control" maxlength="1" type="text" value="<?php echo $cmailinglist;?>" id="mailing-list-input">
                                     </div>
                                 </div>
 
@@ -123,7 +188,7 @@ function selectType($value1, $value2)
                         <p>Click to display code:</p>
                     </div>
                     <div class="col-md-2">
-                        <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Type</a>
+                        <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Update Client</a>
                     </div>
                 </nav>
             </div>

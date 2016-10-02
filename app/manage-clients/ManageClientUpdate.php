@@ -1,6 +1,6 @@
 <?php
 //======================================================================
-// This page manages property type update in the database.
+// This page manages client update in the database.
 
 // Author: Stefan Prioriello
 //======================================================================
@@ -12,10 +12,19 @@ include ("../Config/ErrorHandler.php");
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
-//TODO Fix values
 //get all of the values from post
 $pid = $_POST["id"];
-$ptname = $_POST["typeName"];
+$csurname = $_POST["surname"];
+$cgivenname = $_POST["givenName"];
+$cnum = $_POST["streetNum"];
+$cstreet = $_POST["streetName"];
+$csuburb = $_POST["suburb"];
+$cstate = $_POST["state"];
+$czip = $_POST["zip"];
+$cemail = $_POST["email"];
+$cmobile = $_POST["mobile"];
+$cmailinglist = $_POST["mailingList"];
+
 
 // Get the previously set features
 session_start();
@@ -26,9 +35,9 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
-//TODO Add stored procedure
-// Update property record by id
-$query='BEGIN updatePropertyType(:pid, :ptname); END;';
+// Update client record by id
+$query='BEGIN updateClient(:pid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
+
 $stmt = oci_parse($conn, $query);
 if (!$stmt) {
     $m = oci_error($conn);
@@ -36,7 +45,17 @@ if (!$stmt) {
 }
 
 oci_bind_by_name($stmt,":pid", $pid);
-oci_bind_by_name($stmt,":ptname", $ptname);
+oci_bind_by_name($stmt,":csurname", $csurname);
+oci_bind_by_name($stmt,":cgivenname", $cgivenname);
+oci_bind_by_name($stmt,":cnum", $cnum);
+oci_bind_by_name($stmt,":cstreet", $cstreet);
+oci_bind_by_name($stmt,":csuburb", $csuburb);
+oci_bind_by_name($stmt,":cstate", $cstate);
+oci_bind_by_name($stmt,":czip", $czip);
+oci_bind_by_name($stmt,":cemail", $cemail);
+oci_bind_by_name($stmt,":cmobile", $cmobile);
+oci_bind_by_name($stmt,":cmailinglist", $cmailinglist);
+
 
 $r = oci_execute($stmt);
 if (!$r) {

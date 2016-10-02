@@ -22,7 +22,7 @@ set_exception_handler( "log_exception" );
 ob_start();
 session_start();
 // This page, used for code display
-$_SESSION["page"] = "AddPropertyType";
+$_SESSION["page"] = "AddClient";
 ?>
 
     <!DOCTYPE html>
@@ -53,7 +53,7 @@ $_SESSION["page"] = "AddPropertyType";
         <div class="col-md-9 main-content">
             <div class="row content-row">
                 <div class="col-md-12 content">
-                    <h1>Add Property Type</h1>
+                    <h1>Add Client</h1>
                     <div class="row">
                         <div class="col-md-12">
                             <?php
@@ -82,14 +82,14 @@ $_SESSION["page"] = "AddPropertyType";
                             <!-- Display form for new property information -->
                             <form id="prop-form" data-toggle="validator" method="post" Action="ManageClientCreate.php">
 
-                                <div class="form-group street row">
-                                    <label for="type-name-input" class="col-xs-2 col-form-label">Surname</label>
+                                <div class="form-group surname row">
+                                    <label for="surname-input" class="col-xs-2 col-form-label">Surname</label>
                                     <div class="col-xs-10">
                                         <input name="surname" class="form-control" type="text" id="surname-input" required>
                                     </div>
                                 </div>
-                                <div class="form-group street row">
-                                    <label for="type-name-input" class="col-xs-2 col-form-label">Given Name</label>
+                                <div class="form-group givenName row">
+                                    <label for="given-name-input" class="col-xs-2 col-form-label">Given Name</label>
                                     <div class="col-xs-10">
                                         <input name="givenName" class="form-control" type="text" id="given-name-input" required>
                                     </div>
@@ -126,6 +126,28 @@ $_SESSION["page"] = "AddPropertyType";
                                     </div>
                                 </div>
 
+                                <!-- TODO Email validation -->
+                                <div class="form-group email row">
+                                    <label for="email-input" class="col-xs-2 col-form-label">Email</label>
+                                    <div class="col-xs-10">
+                                        <input name="email" class="form-control" type="text" id="email-input" required>
+                                    </div>
+                                </div>
+                                <!-- TODO Validation and see if there is specific field available -->
+                                <div class="form-group mobile row">
+                                    <label for="mobile-input" class="col-xs-2 col-form-label">Mobile</label>
+                                    <div class="col-xs-10">
+                                        <input name="mobile" class="form-control" maxlength="10" type="text" id="mobile-input" required>
+                                    </div>
+                                </div>
+                                <!-- TODO Make it a yes or no drop down -->
+                                <div class="form-group mailingList row">
+                                    <label for="mailing-list-input" class="col-xs-2 col-form-label">Mailing List</label>
+                                    <div class="col-xs-10">
+                                        <input name="mailingList" class="form-control" maxlength="1" type="text" id="mailing-list-input" required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-md-1 offset-md-11">
                                     <button type="submit" role="button" onclick="go()" class="btn btn-primary submit-button">CREATE</button>
                                 </div>
@@ -142,7 +164,7 @@ $_SESSION["page"] = "AddPropertyType";
                         <p>Click to display code:</p>
                     </div>
                     <div class="col-md-2">
-                        <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Property Type</a>
+                        <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Client</a>
                     </div>
                 </nav>
             </div>
