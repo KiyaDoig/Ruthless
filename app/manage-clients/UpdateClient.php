@@ -69,15 +69,15 @@ function selectType($value1, $value2)
                             }
 
                             // Get property record by id
-                            $query='BEGIN getClientById(:arg_pid, :pid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
+                            $query='BEGIN getClientById(:arg_cid, :cid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
                             $stmt = oci_parse($conn, $query);
                             if (!$stmt) {
                                 $m = oci_error($conn);
                                 throw new Exception($m);
                             }
 
-                            oci_bind_by_name($stmt,":arg_pid", $_POST["activePropertyId"]);
-                            oci_bind_by_name($stmt,":pid", $pid, 10);
+                            oci_bind_by_name($stmt,":arg_cid", $_POST["activePropertyId"]);
+                            oci_bind_by_name($stmt,":cid", $cid, 10);
                             oci_bind_by_name($stmt,":csurname", $csurname, 40);
                             oci_bind_by_name($stmt,":cgivenname", $cgivenname, 40);
                             oci_bind_by_name($stmt,":cnum", $cnum, 20);
@@ -101,7 +101,7 @@ function selectType($value1, $value2)
                                 <div class="form-group row">
                                     <label for="prop-id-input" class="col-xs-2 col-form-label">Property ID</label>
                                     <div class="col-xs-10">
-                                        <input name="id" class="form-control" type="number" value="<?php echo $pid;?>" id="prop-id-input" readonly>
+                                        <input name="id" class="form-control" type="number" value="<?php echo $cid;?>" id="prop-id-input" readonly>
                                     </div>
                                 </div>
 

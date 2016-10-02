@@ -13,7 +13,7 @@ set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
 //get all of the values from post
-$pid = $_POST["id"];
+$cid = $_POST["id"];
 $csurname = $_POST["surname"];
 $cgivenname = $_POST["givenName"];
 $cnum = $_POST["streetNum"];
@@ -36,7 +36,7 @@ if (!$conn) {
 }
 
 // Update client record by id
-$query='BEGIN updateClient(:pid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
+$query='BEGIN updateClient(:cid, :csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist); END;';
 
 $stmt = oci_parse($conn, $query);
 if (!$stmt) {
@@ -44,7 +44,7 @@ if (!$stmt) {
     throw new Exception($m);
 }
 
-oci_bind_by_name($stmt,":pid", $pid);
+oci_bind_by_name($stmt,":cid", $cid);
 oci_bind_by_name($stmt,":csurname", $csurname);
 oci_bind_by_name($stmt,":cgivenname", $cgivenname);
 oci_bind_by_name($stmt,":cnum", $cnum);

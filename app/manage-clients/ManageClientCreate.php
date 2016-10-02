@@ -41,7 +41,7 @@ if (!$conn) {
 }
 
 // Insert them into the property table
-$query='BEGIN addClient(:csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist, :pid); END;';
+$query='BEGIN addClient(:csurname, :cgivenname, :cnum, :cstreet, :csuburb, :cstate, :czip, :cemail, :cmobile, :cmailinglist, :cid); END;';
 $stmt = oci_parse($conn, $query);
 
 oci_bind_by_name($stmt,":csurname", $csurname);
@@ -56,7 +56,7 @@ oci_bind_by_name($stmt,":cemail", $cemail);
 oci_bind_by_name($stmt,":cmobile", $cmobile);
 oci_bind_by_name($stmt,":cmailinglist", $cmailinglist);
 
-oci_bind_by_name($stmt,":pid", $pid, 10);
+oci_bind_by_name($stmt,":cid", $cid, 10);
 
 oci_execute($stmt);
 

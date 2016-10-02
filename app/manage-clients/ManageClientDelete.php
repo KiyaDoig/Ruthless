@@ -13,7 +13,7 @@
 //======================================================================
 
 //get all of the values from post
-$pid = $_POST["activePropertyId"];
+$cid = $_POST["activePropertyId"];
 
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
@@ -31,7 +31,7 @@ if (!$conn) {
 
 // Update property type record by id
 //TODO Add procedure and fix query
-$query='BEGIN deletePropertyType(:pid); END;';
+$query='BEGIN deleteClient(:cid); END;';
 
 $stmt = oci_parse($conn, $query);
 if (!$stmt) {
@@ -39,7 +39,7 @@ if (!$stmt) {
     throw new Exception($m);
 }
 
-oci_bind_by_name($stmt,":pid", $pid);
+oci_bind_by_name($stmt,":cid", $cid);
 
 $r = oci_execute($stmt);
 if (!$r) {
