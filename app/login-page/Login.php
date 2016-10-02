@@ -63,13 +63,12 @@ if (!isset($_SESSION["login"]))
                             }
                             else{
                                 //Not logged in - thus notified
-                                if($_SESSION["tried"] == true){
+
                                     ?>
                                         <div class="alert alert-warning" role="alert">
                                             <strong>Oh snap!</strong> Please attempt to login again.
                                         </div>
                                     <?php
-                                }
                             }
                             ?>
                             <form method="post" Action="">
