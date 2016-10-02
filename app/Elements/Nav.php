@@ -7,7 +7,7 @@
         <a class="nav-link" href="../browse-manage-properties/BrowseManageProperty.php">Property</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../manage-clients/ManageClients.php">Client</a>
+        <a class="nav-link" href="../manage-clients/BrowseManageClient.php">Client</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../manage-property-types/BrowseManagePropertyType.php">Type</a>

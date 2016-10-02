@@ -46,7 +46,7 @@ switch ($page) {
     // Client page
     case "Client":
         echo '<p style="color:red;">Page content by Stephan</p>';
-        show_source("manage-clients/ManageClients.php");
+        show_source("manage-clients/BrowseManageClients.php");
         break;
     // Type Page
     case "Types":
