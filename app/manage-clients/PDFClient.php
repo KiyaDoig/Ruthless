@@ -6,10 +6,9 @@
  * Time: 11:32 PM
  */
 
-  define('FPDF_FONTPATH','FPDF/font/');
-  require('../FPDF/fpdf.php');
+  require('../fpdf/fpdf.php');
 
-  class XFPDF extends FPDF
+  class PDF extends FPDF
   {
       function FancyTable($header,$data)
       {
@@ -44,17 +43,31 @@
       }
   }
 
-include ("../Config/Connection.php");
-  $conn = oci_connect($UName,$Pword,$DB)
-  or die("Couldn't logon.");
-  $query="SELECT * FROM Client ORDER BY client_id";
-  $stmt = oci_parse($conn,$query);
-  oci_execute($stmt);
+    include ("../Config/Connection.php");
 
-  $nrows = oci_fetch_all($stmt,$results);
+    $conn = oci_connect($UName,$PWord,$DB)
+    or die("Couldn't logon.");
+    $query="SELECT * FROM Client ORDER BY client_id";
 
-  if ($nrows> 0)
-  {
+    $stmt = oci_parse($conn, $query);
+
+    if (!$stmt) {
+        $m = oci_error($conn);
+        throw new Exception($m);
+    }
+    $r = oci_execute($stmt);
+    if (!$r) {
+        $m = oci_error($stmt);
+        throw new Exception($m);
+    }
+
+    $stmt = oci_parse($conn,$query);
+    oci_execute($stmt);
+
+    $nrows = oci_fetch_all($stmt,$results);
+
+    if ($nrows> 0)
+    {
       $data = array();
       $header= array();
       while(list($column_name) = each($results))
@@ -71,25 +84,24 @@ include ("../Config/Connection.php");
               $j++;
           }
       }
-  }
-  else
-  {
+    }
+    else
+    {
       echo "No Records found";
-  }
-  oci_free_statement($stmt);
+    }
+    oci_free_statement($stmt);
 
-  $pdf=new XFPDF();
-  $pdf->Open();
-  $pdf->SetFont('Arial','',10);
-  $pdf->AddPage();
-  $pdf->FancyTable($header,$data);
-  $pdf->Output("PDFFile2.pdf");
- ?>
+    $pdf=new PDF();
+    //$pdf->Open();
+    $pdf->SetFont('Arial','',10);
+    $pdf->AddPage();
+    $pdf->FancyTable($header,$data);
+    $pdf->Output();
+    ?>
 
-<html>
-<head><title></title></head>
-<body>
-<a href="PDFFile2.pdf">Click here to see
-    PDF document</a>
-</body>
-</html>
+    <html>
+    <head><title></title></head>
+    <body>
+    <a href="PDFFile2.pdf">Click here to see PDF document</a>
+    </body>
+    </html>

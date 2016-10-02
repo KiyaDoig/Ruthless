@@ -126,7 +126,7 @@ $_SESSION["page"] = "BrowseManageClient";
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Update property button -->
+                    <!-- Update client button -->
                     <div class="col-md-2 offset-md-8">
                         <form method="post" Action="UpdateClient.php">
                             <div id="hidden">
@@ -135,7 +135,11 @@ $_SESSION["page"] = "BrowseManageClient";
                             <button id="update-button" role="button" type="submit" class="btn btn-secondary disabled">Update</button>
                         </form>
                     </div>
-                    <!-- Delete property button -->
+                    <!-- PDF client button -->
+                    <div class="col-md-2 offset-md-4">
+                        <a class="btn btn-primary" href="PDFClient.php" role="button">PDF Creation</a>
+                    </div>
+                    <!-- Delete client button -->
                     <div class="col-md-2">
                         <!-- Confirmation modal -->
                         <button id="delete-button" type="button" class="btn btn-primary disabled" data-toggle="modal" data-target=".bd-delete-prop-modal-sm">Delete</button>
