@@ -6,7 +6,7 @@
     <div class="row">
         <div id="user-panel">
             <img src="../Images/ic_account_circle_white_48dp_1x.png" class="img-circle" alt="User Image">
-            <span id="user-name">GetUserName</span>
+            <span id="user-name"><?php echo "User: " . $_SESSION["username"];?></span>
         </div>
     </div>
     <div class="row separator"></div>
