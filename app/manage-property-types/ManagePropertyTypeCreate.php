@@ -13,7 +13,11 @@
 //======================================================================
 
 ob_start();
-session_start();
+//session_start(); //This is not required due to the login check file now
+
+include ("../login-page/LoginCheck.php");
+include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
 
 //get all of the values from post
 $ptname = $_POST["typeName"];

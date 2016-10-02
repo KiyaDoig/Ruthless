@@ -15,6 +15,7 @@
 //get all of the values from post
 $cid = $_POST["activePropertyId"];
 
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 

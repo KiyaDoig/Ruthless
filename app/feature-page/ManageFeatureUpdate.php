@@ -5,6 +5,9 @@
 // Author: Stefan Prioriello
 //======================================================================
 
+ob_start();
+
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -17,9 +20,6 @@ set_exception_handler( "log_exception" );
 $fid = $_POST["id"];
 $fname = $_POST["featureName"];
 $fdescription = $_POST["featureDescription"];
-
-// Get the previously set features
-session_start();
 
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {

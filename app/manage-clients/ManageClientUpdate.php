@@ -5,6 +5,7 @@
 // Author: Stefan Prioriello
 //======================================================================
 
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 

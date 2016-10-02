@@ -12,6 +12,10 @@
 // Author: Stefan Prioriello
 //======================================================================
 
+ob_start();
+//session_start(); //This is not required due to the login check file now
+
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -19,8 +23,6 @@ include ("../Config/ErrorHandler.php");
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
-ob_start();
-session_start();
 // This page, used for code display
 $_SESSION["page"] = "AddFeature";
 ?>
