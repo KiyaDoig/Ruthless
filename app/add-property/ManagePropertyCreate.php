@@ -6,7 +6,13 @@
 //======================================================================
 
 ob_start();
-session_start();
+include ("../login-page/LoginCheck.php");
+include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
 
 //get all of the values from post
 $pnum = $_POST["streetNum"];
@@ -17,13 +23,6 @@ $pzip = $_POST["zip"];
 $ptype = $_POST["type"]; //Remember it's returning the type_id not name
 $pldate = (string)$_POST["listingDate"];
 $plprice = $_POST["price"];
-
-include ("../Config/Connection.php");
-include ("../Config/ErrorHandler.php");
-
-// Set error and exception handlers
-set_error_handler( "log_error" );
-set_exception_handler( "log_exception" );
 
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {

@@ -5,6 +5,8 @@
 // Author: Kiya
 //======================================================================
 
+ob_start();
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -51,4 +53,6 @@ header("Location: MultiplePropertyEdit.php?update=success");
 
 // Close connection
 oci_close($conn);
+
+ob_end_flush();
 ?>
