@@ -8,6 +8,8 @@
 // Author: Kiya
 //======================================================================
 
+ob_start();
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -15,8 +17,6 @@ include ("../Config/ErrorHandler.php");
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
-ob_start();
-session_start();
 // The id for the property to add images for
 $pid = intval($_SESSION['pid']);
 
@@ -129,7 +129,7 @@ $_SESSION["page"] = "AddImages";
                                 }
 
                                 // Delete the file
-                                unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $imageName);
+                                unlink("../../../ass2/property_images/" . $imageName);
                                 ?>
                                 <!-- refresh the view -->
                                 <script>
@@ -175,12 +175,15 @@ $_SESSION["page"] = "AddImages";
                             }
 
                             // Append the unique id to the name and try to move the file to server folder
-                            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $iid . "_" . $_FILES["userfile"]["name"];
+                            $upfile = "../../../ass2/property_images/" . $iid . "_" . $_FILES["userfile"]["name"];
                             // Error handling
                             if(!move_uploaded_file($_FILES["userfile"]
                             ["tmp_name"],$upfile))
                             {
                                 echo "ERROR: Could Not Move File into Directory";
+                            }
+                            if ($_FILES["userfile"]["error"] === UPLOAD_ERR_OK) {
+                                echo 'Upload was successful';
                             }
                             if($_FILES["userfile"]["size"] == 0)
                             {
