@@ -5,6 +5,8 @@
 // Author: Kiya
 //======================================================================
 
+ob_start();
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -22,7 +24,6 @@ $pzip = $_POST["zip"];
 $ptype = $_POST["type"]; //Remember it's returning the type_id not name
 
 // Get the previously set features
-session_start();
 $oldFeatures= $_SESSION['currentFeatures'];
 
 $conn = oci_connect($UName,$PWord,$DB);
@@ -116,7 +117,7 @@ if(!empty($_POST['delete_check_list'])) {
         }
 
         // Delete the file
-        unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $imageName);
+        unlink("../../../ass2/property_images/". $imageName);
     }
 }
 
@@ -139,7 +140,7 @@ if (isset($_FILES["userfile"]["tmp_name"])) {
             }
 
             // Move the file
-            $upfile = $_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $iid . "_" . $_FILES["userfile"]["name"][$key];
+            $upfile = "../../../ass2/property_images/" . $iid . "_" . $_FILES["userfile"]["name"][$key];
             if(!move_uploaded_file($_FILES["userfile"]["tmp_name"][$key], $upfile))
             {
                 echo "ERROR: Could Not Move File into Directory";
@@ -210,4 +211,5 @@ header("Location: BrowseManageProperty.php");
 oci_free_statement($stmt);
 oci_close($conn);
 
+ob_end_flush();
 ?>

@@ -3,6 +3,15 @@
 // This page displays the documentation relating to assignment 2.
 
 //======================================================================
+
+ob_start();
+include ("../login-page/LoginCheck.php");
+include ("../Config/Connection.php");
+include ("../Config/ErrorHandler.php");
+
+// Set error and exception handlers
+set_error_handler( "log_error" );
+set_exception_handler( "log_exception" );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +41,34 @@
     <div class="col-md-9 main-content">
         <div class="col-md-12">
             <h1>Documentation</h1>
+            <p>
+                1.<br>
+                Kiya Doig, 25152017 <br>
+                Stephan Prioriello, 25946498 <br>
+                <strong>Date of submission: </strong>
+            </p>
+
+            <p>
+                2. Database <br>
+                <strong>Username: s25152017 </strong> <br>
+                <strong>Password: monash00 </strong> <br>
+            </p>
+
+            <p>
+                3.
+                <a href='https://drive.google.com/open?id=0B6bzwU9x1k2GOXdxblRXODhVRjg' target="_blank">Link to Create Table statements</a>
+            </p>
+
+            <p>
+                4.
+                <a href='' target="_blank">Link to folder with current database data screenshots</a>
+            </p>
+
+            <p>
+                5.
+                <a href='https://docs.google.com/a/monash.edu/document/d/1osKh1KW8ZDQgp7tU8cMa804Bn-r4uwpeNwydiEceBvY/edit?usp=sharing' target="_blank">Link to work breakdown document</a>
+            </p>
+
         </div>
 
         <!-- Add a footer to each displayed page -->
@@ -51,3 +88,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

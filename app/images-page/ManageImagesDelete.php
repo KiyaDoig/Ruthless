@@ -5,6 +5,8 @@
 // Author: Kiya
 //======================================================================
 
+ob_start();
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
@@ -12,15 +14,12 @@ include ("../Config/ErrorHandler.php");
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
-ob_start();
-session_start();
-
 // If items were checked then delete the files and the database enries
 if(!empty($_POST['delete_check_list'])) {
 
     foreach($_POST['delete_check_list'] as $imageName) {
         // Delete the file
-        unlink($_SERVER['DOCUMENT_ROOT'] . "/FIT2076/25152017/ass2/property_images/". $imageName);
+        unlink("../../../ass2/property_images/". $imageName);
 
         // Delete from the database
         // Get all of property addresses for properties with any images.

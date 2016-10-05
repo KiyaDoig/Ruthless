@@ -5,15 +5,17 @@
 // Author: Kiya
 //======================================================================
 
-//get all of the values from post
-$pid = $_POST["activePropertyId"];
-
+ob_start();
+include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");
 include ("../Config/ErrorHandler.php");
 
 // Set error and exception handlers
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
+
+//get all of the values from post
+$pid = $_POST["activePropertyId"];
 
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
@@ -44,3 +46,5 @@ header("Location: BrowseManageProperty.php");
 // Clean-up
 oci_free_statement($stmt);
 oci_close($conn);
+
+ob_end_flush();
