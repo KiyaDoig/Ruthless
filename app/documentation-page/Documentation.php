@@ -65,7 +65,7 @@ $_SESSION["page"] = "Documentation";
 
             <p>
                 4.
-                <a href='' target="_blank">Link to folder with current database data screenshots</a>
+                <a href='https://docs.google.com/a/monash.edu/document/d/1yZOP97m2GSQEAQm7STYGPsQ0w9avdQAWWSIr_XWFNNU/edit?usp=sharing' target="_blank">Link to folder with current database data screenshots</a>
             </p>
 
             <p>
