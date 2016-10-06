@@ -13,13 +13,9 @@ include ("../Config/ErrorHandler.php");
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
-//TODO Fix values
 //get all of the values from post
 $pid = $_POST["id"];
 $ptname = $_POST["typeName"];
-
-// Get the previously set features
-session_start();
 
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
