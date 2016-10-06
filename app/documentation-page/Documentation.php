@@ -12,6 +12,10 @@ include ("../Config/ErrorHandler.php");
 // Set error and exception handlers
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
+
+// This page, used for code display
+$_SESSION["page"] = "Documentation";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,9 +76,15 @@ set_exception_handler( "log_exception" );
         </div>
 
         <!-- Add a footer to each displayed page -->
+        <!-- Display footer -->
         <div class="col-md-12" >
             <nav class="navbar navbar-fixed-bottom navbar-light bg-faded" id="footer">
-                <a class="navbar-brand" href="#">Footer</a>
+                <div class="col-md-2 offset-md-8">
+                    <p>Click to display code:</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary display-code" href="../DisplayCode.php" role="button" target="_blank">Documentation</a>
+                </div>
             </nav>
         </div>
     </div>

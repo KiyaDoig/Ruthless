@@ -135,11 +135,13 @@ $_SESSION["page"] = "AddClient";
                                         <input name="mobile" class="form-control" maxlength="10" type="text" id="mobile-input" required>
                                     </div>
                                 </div>
-                                <!-- TODO Make it a yes or no drop down -->
                                 <div class="form-group mailingList row">
                                     <label for="mailing-list-input" class="col-xs-2 col-form-label">Mailing List</label>
                                     <div class="col-xs-10">
-                                        <input name="mailingList" class="form-control" maxlength="1" type="text" id="mailing-list-input" required>
+                                        <select name="mailingList" class="form-control" maxlength="1" type="text" id="mailing-list-input" required>
+                                            <option value="Y">Yes</option>
+                                            <option value="N">No</option>
+                                        </select>
                                     </div>
                                 </div>
 

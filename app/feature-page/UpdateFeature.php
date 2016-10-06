@@ -16,7 +16,7 @@ set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
 // This page, used for code display
-$_SESSION["page"] = "UpdatePropertyType";
+$_SESSION["page"] = "UpdateFeature";
 
 // Select the current property type
 function selectType($value1, $value2)

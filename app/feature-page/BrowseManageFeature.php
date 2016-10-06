@@ -17,7 +17,7 @@ set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
 
 // This page, used for code display
-$_SESSION["page"] = "BrowseManagePropertyType";
+$_SESSION["page"] = "BrowseManageFeature";
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">

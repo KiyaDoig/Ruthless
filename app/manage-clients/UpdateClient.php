@@ -164,11 +164,27 @@ function selectType($value1, $value2)
                                         <input name="mobile" class="form-control" maxlength="10" type="text" value="<?php echo $cmobile;?>" id="mobile-input">
                                     </div>
                                 </div>
-                                <!-- TODO Make it a yes or no drop down -->
                                 <div class="form-group mailingList row">
                                     <label for="mailing-list-input" class="col-xs-2 col-form-label">Mailing List</label>
                                     <div class="col-xs-10">
-                                        <input name="mailingList" class="form-control" maxlength="1" type="text" value="<?php echo $cmailinglist;?>" id="mailing-list-input">
+                                        <select name="mailingList" class="form-control" maxlength="1" type="text" id="mailing-list-input" required>
+                                            <?php
+                                            if($cmailinglist == "Y")
+                                            {
+                                            ?>
+                                                <option value="Y">Yes</option>
+                                                <option value="N">No</option>
+                                            <?php
+                                            }
+                                            else
+                                            {
+                                            ?>
+                                                <option value="N">No</option>
+                                                <option value="Y">Yes</option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
