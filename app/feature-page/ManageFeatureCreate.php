@@ -19,13 +19,6 @@ set_exception_handler( "log_exception" );
 $fname = $_POST["featureName"];
 $fdescription = $_POST["featureDescription"];
 
-include ("../Config/Connection.php");
-include ("../Config/ErrorHandler.php");
-
-// Set error and exception handlers
-set_error_handler( "log_error" );
-set_exception_handler( "log_exception" );
-
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
     $e = oci_error();
