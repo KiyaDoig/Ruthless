@@ -96,7 +96,7 @@ $_SESSION["page"] = "Images";
                                     }
 
                                     // Set the property_images directory and open the stream.
-                                    $currdir = dirname("../../../ass2/property_images/*");
+                                    $currdir = dirname("../../property_images/*");
                                     $dir = opendir($currdir);
 
                                     // Iterate over the files and check for matches with the array from the database
