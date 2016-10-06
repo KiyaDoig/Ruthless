@@ -14,9 +14,6 @@ include ("../Config/ErrorHandler.php");
 //get all of the values from post
 $ptname = $_POST["typeName"];
 
-include ("../Config/Connection.php");
-include ("../Config/ErrorHandler.php");
-
 // Set error and exception handlers
 set_error_handler( "log_error" );
 set_exception_handler( "log_exception" );
