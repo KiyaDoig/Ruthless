@@ -19,7 +19,7 @@ if(!empty($_POST['delete_check_list'])) {
 
     foreach($_POST['delete_check_list'] as $imageName) {
         // Delete the file
-        unlink("../../../ass2/property_images/". $imageName);
+        unlink("../../property_images/". $imageName);
 
         // Delete from the database
         // Get all of property addresses for properties with any images.

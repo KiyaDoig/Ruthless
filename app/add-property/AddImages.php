@@ -129,7 +129,7 @@ $_SESSION["page"] = "AddImages";
                                 }
 
                                 // Delete the file
-                                unlink("../../../ass2/property_images/" . $imageName);
+                                unlink("../../property_images/" . $imageName);
                                 ?>
                                 <!-- refresh the view -->
                                 <script>
@@ -175,7 +175,7 @@ $_SESSION["page"] = "AddImages";
                             }
 
                             // Append the unique id to the name and try to move the file to server folder
-                            $upfile = "../../../ass2/property_images/" . $iid . "_" . $_FILES["userfile"]["name"];
+                            $upfile = "../../property_images/" . $iid . "_" . $_FILES["userfile"]["name"];
                             // Error handling
                             if(!move_uploaded_file($_FILES["userfile"]
                             ["tmp_name"],$upfile))
