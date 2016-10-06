@@ -46,11 +46,10 @@ $_SESSION["page"] = "Main";
             <div class="row">
                 <div class="col-md-12">
                     <h1>Main Page</h1>
-
+                    <p></p>
+                    <h1 style="text-align:center">Welcome to Ruthless Real Estate</h1>
                 </div>
             </div>
-
-            <?php echo "Login Status" . var_dump($_SESSION) . "."; ?>
 
             <!-- Add a footer to each displayed page -->
             <div class="col-md-12" >
