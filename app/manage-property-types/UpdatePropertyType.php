@@ -1,12 +1,11 @@
 <?php
 //======================================================================
-// This page allows the user to update a property, including all property details, features and images.
+// This page allows the user to update a property type.
 
 // Author: Stefan Prioriello
 //======================================================================
 
 ob_start();
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

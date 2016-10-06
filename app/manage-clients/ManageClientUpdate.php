@@ -27,9 +27,6 @@ $cmobile = $_POST["mobile"];
 $cmailinglist = $_POST["mailingList"];
 
 
-// Get the previously set features
-session_start();
-
 $conn = oci_connect($UName,$PWord,$DB);
 if (!$conn) {
     $e = oci_error();

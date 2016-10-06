@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BerettaFTW
- * Date: 30/09/2016
- * Time: 6:12 PM
- */
-
 //======================================================================
 // This page manages property type delete from the database.
 
@@ -14,8 +7,6 @@
 
 //get all of the values from post
 $pid = $_POST["activePropertyId"];
-
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

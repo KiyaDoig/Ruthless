@@ -1,19 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BerettaFTW
- * Date: 20/09/2016
- * Time: 6:05 PM
- */
 //======================================================================
-// This page allows the user to create a property in the database
-// The user can input details including property features.
+// This page allows the user to create a property type in the database
+// The user can input details of property type.
 
 // Author: Stefan Prioriello
 //======================================================================
 
 ob_start();
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

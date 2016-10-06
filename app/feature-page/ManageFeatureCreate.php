@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BerettaFTW
- * Date: 20/09/2016
- * Time: 6:12 PM
- */
-
 //======================================================================
 // This page manages feature create.
 
@@ -13,7 +6,6 @@
 //======================================================================
 
 ob_start();
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

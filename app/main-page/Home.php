@@ -1,11 +1,11 @@
 <?php
 //======================================================================
-// This page
-//
+// This page is the home page that starting point of the site.
+
+// Author: Stefan Prioriello
 //======================================================================
 
 ob_start();
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

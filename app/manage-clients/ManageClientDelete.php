@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BerettaFTW
- * Date: 30/09/2016
- * Time: 6:12 PM
- */
-
 //======================================================================
-// This page manages property type delete from the database.
+// This page manages client delete from the database.
 
 // Author: Stefan Prioriello
 //======================================================================

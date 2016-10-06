@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BerettaFTW
- * Date: 30/09/2016
- * Time: 6:12 PM
- */
-
 //======================================================================
-// This page manages property type delete from the database.
+// This page manages feature delete from the database.
 
 // Author: Stefan Prioriello
 //======================================================================
@@ -16,7 +9,6 @@
 $fid = $_POST["activePropertyId"];
 
 ob_start();
-//session_start(); //This is not required due to the login check file now
 
 include ("../login-page/LoginCheck.php");
 include ("../Config/Connection.php");

@@ -1,6 +1,6 @@
 <?php
 //======================================================================
-// This page manages property type update in the database.
+// This page manages feature update in the database.
 
 // Author: Stefan Prioriello
 //======================================================================
